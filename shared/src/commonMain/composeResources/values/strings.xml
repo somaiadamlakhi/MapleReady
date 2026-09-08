@@ -1,7 +1,7 @@
 <resources>
+
     <string name="app_name">MapleReady</string>
-    <string name="home_title">Ready for Canada?</string>
-    <string name="home_subtitle">Prepare for your Canadian Citizenship Test</string>
+    <string name="home_subtitle">Your path to Canadian citizenship</string>
     <string name="study_title">Study</string>
     <string name="study_description">Learn from Discover Canada</string>
     <string name="practice_title">Practice</string>
@@ -9,5 +9,9 @@
     <string name="mock_test_title">Mock Test</string>
     <string name="mock_test_description">20 questions • 45 minutes</string>
     <string name="readiness_title">Your Readiness</string>
-    <string name="readiness_percentage">%1$d%%</string>
+    <string name="readiness_percentage">%1$d%</string>
+    <string name="home_motivation">Small steps make big milestones.</string>
+    <string name="nav_home">Home</string>
+    <string name="nav_study">Study</string>
+    <string name="nav_progress">Progress</string>
 </resources>

@@ -1,16 +1,50 @@
 package com.blueray.mapleready.presentation.home
 
-import androidx.compose.foundation.layout.*
-import androidx.compose.material3.*
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.Description
+import androidx.compose.material.icons.outlined.MenuBook
+import androidx.compose.material.icons.outlined.TrackChanges
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.LinearProgressIndicator
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.blueray.mapleready.presentation.components.MapleReadyActionCard
+import com.blueray.mapleready.presentation.theme.MapleGold
 import com.blueray.mapleready.presentation.theme.MapleReadyTheme
+import com.blueray.mapleready.presentation.theme.MapleRed
+import com.blueray.mapleready.presentation.theme.MockTestBackground
+import com.blueray.mapleready.presentation.theme.PracticeBackground
+import com.blueray.mapleready.presentation.theme.ProgressTrack
+import com.blueray.mapleready.presentation.theme.StudyBackground
+import mapleready.shared.generated.resources.Res
+import mapleready.shared.generated.resources.app_name
+import mapleready.shared.generated.resources.home_motivation
+import mapleready.shared.generated.resources.home_subtitle
+import mapleready.shared.generated.resources.mock_test_description
+import mapleready.shared.generated.resources.mock_test_title
+import mapleready.shared.generated.resources.practice_description
+import mapleready.shared.generated.resources.practice_title
+import mapleready.shared.generated.resources.readiness_percentage
+import mapleready.shared.generated.resources.readiness_title
+import mapleready.shared.generated.resources.study_description
+import mapleready.shared.generated.resources.study_title
 import org.jetbrains.compose.resources.stringResource
-
-import mapleready.shared.generated.resources.*
 
 @Composable
 fun HomeScreen(
@@ -37,98 +71,154 @@ private fun HomeContent(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(24.dp),
+            .background(MaterialTheme.colorScheme.background)
+            .padding(horizontal = 24.dp, vertical = 20.dp),
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
 
-        Spacer(Modifier.height(24.dp))
+        Spacer(
+            modifier = Modifier.height(8.dp)
+        )
 
+        HomeHeader()
+
+        Spacer(
+            modifier = Modifier.height(8.dp)
+        )
+
+        MapleReadyActionCard(
+            title = stringResource(Res.string.study_title),
+            description = stringResource(Res.string.study_description),
+            icon = Icons.Outlined.MenuBook,
+            containerColor = StudyBackground,
+            iconColor = MapleRed,
+            onClick = onStudyClick
+        )
+
+        MapleReadyActionCard(
+            title = stringResource(Res.string.practice_title),
+            description = stringResource(Res.string.practice_description),
+            icon = Icons.Outlined.Description,
+            containerColor = PracticeBackground,
+            iconColor = MapleGold,
+            onClick = onPracticeClick
+        )
+
+        MapleReadyActionCard(
+            title = stringResource(Res.string.mock_test_title),
+            description = stringResource(Res.string.mock_test_description),
+            icon = Icons.Outlined.TrackChanges,
+            containerColor = MockTestBackground,
+            iconColor = MaterialTheme.colorScheme.primary,
+            onClick = onMockTestClick
+        )
+
+        Spacer(
+            modifier = Modifier.height(4.dp)
+        )
+
+        ReadinessSection(
+            readiness = state.readiness
+        )
+
+        MotivationCard()
+    }
+}
+
+@Composable
+private fun HomeHeader() {
+    Column(
+        modifier = Modifier.fillMaxWidth(),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
         Text(
             text = "🍁",
-            style = MaterialTheme.typography.displayMedium,
-            modifier = Modifier.align(Alignment.CenterHorizontally)
+            style = MaterialTheme.typography.displaySmall
+        )
+
+        Spacer(
+            modifier = Modifier.height(8.dp)
         )
 
         Text(
-            text = stringResource(Res.string.home_title),
+            text = stringResource(Res.string.app_name),
             style = MaterialTheme.typography.headlineLarge,
-            modifier = Modifier.align(Alignment.CenterHorizontally)
+            color = MaterialTheme.colorScheme.primary
         )
 
         Text(
             text = stringResource(Res.string.home_subtitle),
-            style = MaterialTheme.typography.bodyLarge,
-            modifier = Modifier.align(Alignment.CenterHorizontally)
-        )
-
-        Spacer(Modifier.height(12.dp))
-
-        HomeActionCard(
-            title = stringResource(Res.string.study_title),
-            description = stringResource(Res.string.study_description),
-            onClick = onStudyClick
-        )
-
-        HomeActionCard(
-            title = stringResource(Res.string.practice_title),
-            description = stringResource(Res.string.practice_description),
-            onClick = onPracticeClick
-        )
-
-        HomeActionCard(
-            title = stringResource(Res.string.mock_test_title),
-            description = stringResource(Res.string.mock_test_description),
-            onClick = onMockTestClick
-        )
-
-        Spacer(Modifier.height(8.dp))
-
-        Text(
-            text = stringResource(Res.string.readiness_title),
-            style = MaterialTheme.typography.titleMedium
-        )
-
-        LinearProgressIndicator(
-            progress = { state.readiness },
-            modifier = Modifier.fillMaxWidth()
-        )
-
-        Text(
-            text = stringResource(
-                Res.string.readiness_percentage,
-                (state.readiness * 100).toInt()
-            ),
-            style = MaterialTheme.typography.labelLarge,
-            modifier = Modifier.align(Alignment.End)
+            style = MaterialTheme.typography.bodyMedium,
+            color = MaterialTheme.colorScheme.onBackground.copy(
+                alpha = 0.7f
+            )
         )
     }
 }
 
 @Composable
-private fun HomeActionCard(
-    title: String,
-    description: String,
-    onClick: () -> Unit
+private fun ReadinessSection(
+    readiness: Float
 ) {
-    Card(
-        onClick = onClick,
-        modifier = Modifier.fillMaxWidth()
+    Column(
+        verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
-        Column(
-            modifier = Modifier.padding(20.dp)
+
+        val percentage = (readiness.coerceIn(0f, 1f) * 100).toInt()
+
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
         ) {
             Text(
-                text = title,
-                style = MaterialTheme.typography.titleLarge
+                text = stringResource(
+                    Res.string.readiness_title
+                ),
+                style = MaterialTheme.typography.titleMedium
             )
-
-            Spacer(Modifier.height(4.dp))
 
             Text(
-                text = description,
-                style = MaterialTheme.typography.bodyMedium
+                text = stringResource(
+                    Res.string.readiness_percentage,
+                    (readiness * 100).toInt(),
+                    percentage
+                ),
+                style = MaterialTheme.typography.titleMedium,
+                color = MaterialTheme.colorScheme.primary
             )
         }
+
+        LinearProgressIndicator(
+            progress = { readiness },
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(8.dp),
+            color = MaterialTheme.colorScheme.primary,
+            trackColor = ProgressTrack
+        )
+    }
+}
+
+@Composable
+private fun MotivationCard() {
+    Card(
+        modifier = Modifier.fillMaxWidth(),
+        shape = RoundedCornerShape(18.dp),
+        colors = CardDefaults.cardColors(
+            containerColor = PracticeBackground.copy(
+                alpha = 0.55f
+            )
+        )
+    ) {
+        Text(
+            text = stringResource(
+                Res.string.home_motivation
+            ),
+            modifier = Modifier.padding(16.dp),
+            style = MaterialTheme.typography.bodyMedium,
+            color = MaterialTheme.colorScheme.onSurface
+        )
     }
 }
 
