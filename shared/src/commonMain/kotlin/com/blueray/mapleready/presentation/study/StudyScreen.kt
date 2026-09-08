@@ -23,6 +23,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.blueray.mapleready.domain.model.StudyTopicId
 import com.blueray.mapleready.presentation.components.BottomNavItem
 import com.blueray.mapleready.presentation.components.MapleReadyBottomBar
 import com.blueray.mapleready.presentation.theme.MapleReadyTheme
@@ -207,26 +208,31 @@ private fun StudyScreenPreview() {
             state = StudyUiState(
                 topics = listOf(
                     StudyTopicUiModel(
+                        id = StudyTopicId.HISTORY,
                         title = Res.string.topic_history_title,
                         description = Res.string.topic_history_description,
                         progress = 0.65f
                     ),
                     StudyTopicUiModel(
+                        id = StudyTopicId.RIGHTS_AND_RESPONSIBILITIES,
                         title = Res.string.topic_rights_title,
                         description = Res.string.topic_rights_description,
                         progress = 0.40f
                     ),
                     StudyTopicUiModel(
+                        id = StudyTopicId.GOVERNMENT,
                         title = Res.string.topic_government_title,
                         description = Res.string.topic_government_description,
                         progress = 0.80f
                     ),
                     StudyTopicUiModel(
+                        id = StudyTopicId.ELECTIONS,
                         title = Res.string.topic_elections_title,
                         description = Res.string.topic_elections_description,
                         progress = 0.25f
                     ),
                     StudyTopicUiModel(
+                        id = StudyTopicId.GEOGRAPHY,
                         title = Res.string.topic_geography_title,
                         description = Res.string.topic_geography_description,
                         progress = 0.50f

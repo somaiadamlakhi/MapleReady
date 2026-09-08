@@ -11,4 +11,8 @@ data class StudyTopicUiState(
     val title: StringResource,
     val currentSectionIndex: Int = 0,
     val sections: List<StudyTopicSectionUiModel> = emptyList()
-)
+) {
+    val isLastSection: Boolean
+        get() = sections.isNotEmpty() &&
+                currentSectionIndex >= sections.lastIndex
+}
