@@ -14,4 +14,30 @@
     <string name="nav_home">Home</string>
     <string name="nav_study">Study</string>
     <string name="nav_progress">Progress</string>
+    <string name="study_screen_title">Study</string>
+    <string name="study_screen_subtitle">Learn Discover Canada chapter by chapter</string>
+
+    <string name="topic_history_title">Canadian History</string>
+    <string name="topic_history_description">Explore the people and events that shaped Canada</string>
+
+    <string name="topic_rights_title">Rights &amp; Responsibilities</string>
+    <string name="topic_rights_description">Learn your rights and duties as a Canadian citizen</string>
+
+    <string name="topic_government_title">Government</string>
+    <string name="topic_government_description">Understand Canada's system of government</string>
+
+    <string name="topic_elections_title">Elections</string>
+    <string name="topic_elections_description">Learn how elections and voting work</string>
+
+    <string name="topic_geography_title">Geography</string>
+    <string name="topic_geography_description">Discover Canada's regions and provinces</string>
+    <string name="percentage">%1$d%%</string>
+    <string name="section_progress">Section %1$d of %2$d</string>
+    <string name="next_section">Next Section</string>
+
+    <string name="topic_history_section_1">Early Canada</string>
+    <string name="topic_history_content_1">Canada's history begins with Indigenous peoples who lived across the land long before European settlers arrived.</string>
+
+    <string name="topic_history_section_2">European Settlement</string>
+    <string name="topic_history_content_2">European exploration and settlement changed Canada over several centuries and shaped the country that exists today.</string>
 </resources>

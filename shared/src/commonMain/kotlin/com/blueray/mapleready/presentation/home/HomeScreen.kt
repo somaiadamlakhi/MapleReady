@@ -18,13 +18,16 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.blueray.mapleready.presentation.components.BottomNavItem
 import com.blueray.mapleready.presentation.components.MapleReadyActionCard
+import com.blueray.mapleready.presentation.components.MapleReadyBottomBar
 import com.blueray.mapleready.presentation.theme.MapleGold
 import com.blueray.mapleready.presentation.theme.MapleReadyTheme
 import com.blueray.mapleready.presentation.theme.MapleRed
@@ -51,14 +54,26 @@ fun HomeScreen(
     state: HomeUiState = HomeUiState(),
     onStudyClick: () -> Unit = {},
     onPracticeClick: () -> Unit = {},
-    onMockTestClick: () -> Unit = {}
+    onMockTestClick: () -> Unit = {},
+    onBottomNavItemSelected: (BottomNavItem) -> Unit = {}
 ) {
-    HomeContent(
-        state = state,
-        onStudyClick = onStudyClick,
-        onPracticeClick = onPracticeClick,
-        onMockTestClick = onMockTestClick
-    )
+    Scaffold(
+        bottomBar = {
+            MapleReadyBottomBar(
+                selectedItem = BottomNavItem.HOME,
+                onItemSelected = onBottomNavItemSelected
+            )
+        }
+    ) { innerPadding ->
+
+        HomeContent(
+            state = state,
+            onStudyClick = onStudyClick,
+            onPracticeClick = onPracticeClick,
+            onMockTestClick = onMockTestClick,
+            modifier = Modifier.padding(innerPadding)
+        )
+    }
 }
 
 @Composable
@@ -66,10 +81,11 @@ private fun HomeContent(
     state: HomeUiState,
     onStudyClick: () -> Unit,
     onPracticeClick: () -> Unit,
-    onMockTestClick: () -> Unit
+    onMockTestClick: () -> Unit,
+    modifier: Modifier = Modifier
 ) {
     Column(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxSize()
             .background(MaterialTheme.colorScheme.background)
             .padding(horizontal = 24.dp, vertical = 20.dp),
@@ -226,13 +242,14 @@ private fun MotivationCard() {
 @Composable
 private fun HomeScreenPreview() {
     MapleReadyTheme {
-        HomeContent(
+        HomeScreen(
             state = HomeUiState(
                 readiness = 0.72f
             ),
             onStudyClick = {},
             onPracticeClick = {},
-            onMockTestClick = {}
+            onMockTestClick = {},
+            onBottomNavItemSelected = {}
         )
     }
 }
