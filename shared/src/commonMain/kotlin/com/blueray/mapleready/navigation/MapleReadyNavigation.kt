@@ -6,7 +6,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import com.blueray.mapleready.data.study.StudyRepositoryImpl
-import com.blueray.mapleready.domain.model.StudyTopicId
 import com.blueray.mapleready.presentation.components.BottomNavItem
 import com.blueray.mapleready.presentation.home.HomeScreen
 import com.blueray.mapleready.presentation.home.HomeUiState
@@ -14,14 +13,7 @@ import com.blueray.mapleready.presentation.study.StudyScreen
 import com.blueray.mapleready.presentation.study.StudyUiState
 import com.blueray.mapleready.presentation.study.toUiModel
 import com.blueray.mapleready.presentation.study.topic.StudyTopicScreen
-import com.blueray.mapleready.presentation.study.topic.StudyTopicSectionUiModel
-import com.blueray.mapleready.presentation.study.topic.StudyTopicUiState
-import mapleready.shared.generated.resources.Res
-import mapleready.shared.generated.resources.topic_history_content_1
-import mapleready.shared.generated.resources.topic_history_content_2
-import mapleready.shared.generated.resources.topic_history_section_1
-import mapleready.shared.generated.resources.topic_history_section_2
-import mapleready.shared.generated.resources.topic_history_title
+import com.blueray.mapleready.presentation.study.topic.toTopicUiState
 
 @Composable
 fun MapleReadyNavigation() {
@@ -92,25 +84,36 @@ fun MapleReadyNavigation() {
 
         is AppDestination.StudyTopic -> {
 
-            val topicState = studyTopicState(
-                topicId = current.topicId
-            ).copy(
-                currentSectionIndex = currentSectionIndex
+            val topic = studyRepository.getTopicById(
+                current.topicId
             )
 
-            StudyTopicScreen(
-                state = topicState,
+            if (topic != null) {
 
-                onNextSectionClick = {
-                    if (currentSectionIndex < topicState.sections.lastIndex) {
-                        currentSectionIndex++
+                val topicState = topic.toTopicUiState(
+                    currentSectionIndex = currentSectionIndex
+                )
+
+                StudyTopicScreen(
+                    state = topicState,
+
+                    onNextSectionClick = {
+                        if (currentSectionIndex < topicState.sections.lastIndex) {
+                            currentSectionIndex++
+                        }
+                    },
+
+                    onPreviousSectionClick = {
+                        if (currentSectionIndex > 0) {
+                            currentSectionIndex--
+                        }
+                    },
+
+                    onBackClick = {
+                        destination = AppDestination.Study
                     }
-                },
-
-                onBackClick = {
-                    destination = AppDestination.Study
-                }
-            )
+                )
+            }
         }
     }
 }
@@ -120,47 +123,5 @@ private fun BottomNavItem.toDestination(): AppDestination {
         BottomNavItem.HOME -> AppDestination.Home
         BottomNavItem.STUDY -> AppDestination.Study
         BottomNavItem.PROGRESS -> AppDestination.Progress
-    }
-}
-
-
-private fun studyTopicState(
-    topicId: StudyTopicId
-): StudyTopicUiState {
-
-    return when (topicId) {
-
-        StudyTopicId.HISTORY -> {
-            StudyTopicUiState(
-                title = Res.string.topic_history_title,
-                currentSectionIndex = 0,
-                sections = listOf(
-                    StudyTopicSectionUiModel(
-                        title = Res.string.topic_history_section_1,
-                        content = Res.string.topic_history_content_1
-                    ),
-                    StudyTopicSectionUiModel(
-                        title = Res.string.topic_history_section_2,
-                        content = Res.string.topic_history_content_2
-                    )
-                )
-            )
-        }
-
-        StudyTopicId.RIGHTS_AND_RESPONSIBILITIES -> {
-            TODO("Rights topic")
-        }
-
-        StudyTopicId.GOVERNMENT -> {
-            TODO("Government topic")
-        }
-
-        StudyTopicId.ELECTIONS -> {
-            TODO("Elections topic")
-        }
-
-        StudyTopicId.GEOGRAPHY -> {
-            TODO("Geography topic")
-        }
     }
 }

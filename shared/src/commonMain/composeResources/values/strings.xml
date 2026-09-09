@@ -40,4 +40,7 @@
 
     <string name="topic_history_section_2">European Settlement</string>
     <string name="topic_history_content_2">European exploration and settlement changed Canada over several centuries and shaped the country that exists today.</string>
+    <string name="previous_section">Previous Section</string>
+    <string name="progress_screen_title">Progress</string>
+    <string name="progress_screen_subtitle">Track your preparation and readiness</string>
 </resources>

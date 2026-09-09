@@ -12,7 +12,11 @@ data class StudyTopicUiState(
     val currentSectionIndex: Int = 0,
     val sections: List<StudyTopicSectionUiModel> = emptyList()
 ) {
-    val isLastSection: Boolean
+
+    val hasPreviousSection: Boolean
+        get() = currentSectionIndex > 0
+
+    val hasNextSection: Boolean
         get() = sections.isNotEmpty() &&
-                currentSectionIndex >= sections.lastIndex
+                currentSectionIndex < sections.lastIndex
 }

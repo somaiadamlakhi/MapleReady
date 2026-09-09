@@ -22,6 +22,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
@@ -35,6 +36,7 @@ import com.blueray.mapleready.presentation.theme.PracticeBackground
 import com.blueray.mapleready.presentation.theme.ProgressTrack
 import mapleready.shared.generated.resources.Res
 import mapleready.shared.generated.resources.next_section
+import mapleready.shared.generated.resources.previous_section
 import mapleready.shared.generated.resources.section_progress
 import mapleready.shared.generated.resources.topic_history_content_1
 import mapleready.shared.generated.resources.topic_history_content_2
@@ -47,6 +49,7 @@ import org.jetbrains.compose.resources.stringResource
 fun StudyTopicScreen(
     state: StudyTopicUiState,
     onNextSectionClick: () -> Unit = {},
+    onPreviousSectionClick: () -> Unit = {},
     onBackClick: () -> Unit = {}
 ) {
     Scaffold(
@@ -70,6 +73,13 @@ fun StudyTopicScreen(
             )
         }
     ) { innerPadding ->
+
+        StudyTopicContent(
+            state = state,
+            onNextSectionClick = onNextSectionClick,
+            onPreviousSectionClick = onPreviousSectionClick,
+            modifier = Modifier.padding(innerPadding)
+        )
     }
 }
 
@@ -77,6 +87,7 @@ fun StudyTopicScreen(
 private fun StudyTopicContent(
     state: StudyTopicUiState,
     onNextSectionClick: () -> Unit,
+    onPreviousSectionClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     val safeIndex = state.currentSectionIndex
@@ -167,18 +178,39 @@ private fun StudyTopicContent(
             modifier = Modifier.height(8.dp)
         )
 
-        Button(
-            onClick = onNextSectionClick,
+        Row(
             modifier = Modifier.fillMaxWidth(),
-            colors = ButtonDefaults.buttonColors(
-                containerColor = MaterialTheme.colorScheme.primary
-            )
+            horizontalArrangement = Arrangement.spacedBy(12.dp)
         ) {
-            Text(
-                text = stringResource(
-                    Res.string.next_section
-                )
-            )
+
+            if (state.hasPreviousSection) {
+                OutlinedButton(
+                    onClick = onPreviousSectionClick,
+                    modifier = Modifier.weight(1f)
+                ) {
+                    Text(
+                        text = stringResource(
+                            Res.string.previous_section
+                        )
+                    )
+                }
+            }
+
+            if (state.hasNextSection) {
+                Button(
+                    onClick = onNextSectionClick,
+                    modifier = Modifier.weight(1f),
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = MaterialTheme.colorScheme.primary
+                    )
+                ) {
+                    Text(
+                        text = stringResource(
+                            Res.string.next_section
+                        )
+                    )
+                }
+            }
         }
     }
 }
