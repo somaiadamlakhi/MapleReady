@@ -29,6 +29,8 @@ import com.blueray.mapleready.presentation.theme.MapleReadyTheme
 import com.blueray.mapleready.presentation.theme.PracticeBackground
 import com.blueray.mapleready.presentation.theme.ProgressTrack
 import mapleready.shared.generated.resources.Res
+import mapleready.shared.generated.resources.overall_readiness
+import mapleready.shared.generated.resources.percentage
 import mapleready.shared.generated.resources.progress_screen_title
 import mapleready.shared.generated.resources.progress_screen_subtitle
 import mapleready.shared.generated.resources.topic_elections_title
@@ -36,6 +38,7 @@ import mapleready.shared.generated.resources.topic_geography_title
 import mapleready.shared.generated.resources.topic_government_title
 import mapleready.shared.generated.resources.topic_history_title
 import mapleready.shared.generated.resources.topic_rights_title
+import mapleready.shared.generated.resources.topics_completed
 import org.jetbrains.compose.resources.stringResource
 
 @Composable
@@ -109,6 +112,7 @@ private fun OverallReadinessCard(
     state: ProgressUiState
 ) {
     val safeProgress = state.overallReadiness.coerceIn(0f, 1f)
+    val percentage = (safeProgress * 100).toInt()
 
     Card(
         modifier = Modifier.fillMaxWidth(),
@@ -127,12 +131,15 @@ private fun OverallReadinessCard(
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
                 Text(
-                    text = "Overall Readiness",
+                    text = stringResource(Res.string.overall_readiness),
                     style = MaterialTheme.typography.titleMedium
                 )
 
                 Text(
-                    text = "${(safeProgress * 100).toInt()}%",
+                    text = stringResource(
+                        Res.string.percentage,
+                        percentage
+                    ),
                     style = MaterialTheme.typography.titleMedium,
                     color = MaterialTheme.colorScheme.primary
                 )
@@ -148,7 +155,11 @@ private fun OverallReadinessCard(
             )
 
             Text(
-                text = "${state.completedTopics} of ${state.totalTopics} topics completed",
+                text = stringResource(
+                    Res.string.topics_completed,
+                    state.completedTopics,
+                    state.totalTopics
+                ),
                 style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f)
             )
@@ -161,6 +172,7 @@ private fun TopicProgressCard(
     topic: TopicProgressUiModel
 ) {
     val safeProgress = topic.progress.coerceIn(0f, 1f)
+    val percentage = (safeProgress * 100).toInt()
 
     Card(
         modifier = Modifier.fillMaxWidth(),
@@ -182,7 +194,10 @@ private fun TopicProgressCard(
                 )
 
                 Text(
-                    text = "${(safeProgress * 100).toInt()}%",
+                    text = stringResource(
+                        Res.string.percentage,
+                        percentage
+                    ),
                     color = MaterialTheme.colorScheme.primary
                 )
             }

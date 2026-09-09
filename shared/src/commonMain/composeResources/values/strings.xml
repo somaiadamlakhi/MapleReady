@@ -31,7 +31,6 @@
 
     <string name="topic_geography_title">Geography</string>
     <string name="topic_geography_description">Discover Canada's regions and provinces</string>
-    <string name="percentage">%1$d%%</string>
     <string name="section_progress">Section %1$d of %2$d</string>
     <string name="next_section">Next Section</string>
 
@@ -43,4 +42,7 @@
     <string name="previous_section">Previous Section</string>
     <string name="progress_screen_title">Progress</string>
     <string name="progress_screen_subtitle">Track your preparation and readiness</string>
+    <string name="overall_readiness">Overall Readiness</string>
+    <string name="topics_completed">%1$d of %2$d topics completed</string>
+    <string name="percentage">%1$d%</string>
 </resources>
