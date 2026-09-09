@@ -9,6 +9,8 @@ import com.blueray.mapleready.data.study.StudyRepositoryImpl
 import com.blueray.mapleready.presentation.components.BottomNavItem
 import com.blueray.mapleready.presentation.home.HomeScreen
 import com.blueray.mapleready.presentation.home.HomeUiState
+import com.blueray.mapleready.presentation.progress.ProgressScreen
+import com.blueray.mapleready.presentation.progress.toProgressUiState
 import com.blueray.mapleready.presentation.study.StudyScreen
 import com.blueray.mapleready.presentation.study.StudyUiState
 import com.blueray.mapleready.presentation.study.toUiModel
@@ -79,7 +81,17 @@ fun MapleReadyNavigation() {
         }
 
         AppDestination.Progress -> {
-            // We'll build ProgressScreen next.
+
+            val progressState = studyRepository
+                .getTopics()
+                .toProgressUiState()
+
+            ProgressScreen(
+                state = progressState,
+                onBottomNavItemSelected = { item ->
+                    destination = item.toDestination()
+                }
+            )
         }
 
         is AppDestination.StudyTopic -> {

@@ -31,6 +31,11 @@ import com.blueray.mapleready.presentation.theme.ProgressTrack
 import mapleready.shared.generated.resources.Res
 import mapleready.shared.generated.resources.progress_screen_title
 import mapleready.shared.generated.resources.progress_screen_subtitle
+import mapleready.shared.generated.resources.topic_elections_title
+import mapleready.shared.generated.resources.topic_geography_title
+import mapleready.shared.generated.resources.topic_government_title
+import mapleready.shared.generated.resources.topic_history_title
+import mapleready.shared.generated.resources.topic_rights_title
 import org.jetbrains.compose.resources.stringResource
 
 @Composable
@@ -172,7 +177,7 @@ private fun TopicProgressCard(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
-                    text = topic.title,
+                    text = stringResource(topic.title),
                     style = MaterialTheme.typography.titleMedium
                 )
 
@@ -202,13 +207,26 @@ private fun ProgressScreenPreview() {
                 completedTopics = 2,
                 totalTopics = 5,
                 topicProgress = listOf(
-                    TopicProgressUiModel("Canadian History", 0.65f),
-                    TopicProgressUiModel("Rights & Responsibilities", 0.40f),
-                    TopicProgressUiModel("Government", 0.80f),
-                    TopicProgressUiModel("Elections", 0.25f),
-                    TopicProgressUiModel("Geography", 0.50f)
+                    TopicProgressUiModel(title = Res.string.topic_history_title, progress = 0.65f),
+                    TopicProgressUiModel(
+                        title = Res.string.topic_rights_title,
+                        progress = 0.40f
+                    ),
+                    TopicProgressUiModel(
+                        title = Res.string.topic_government_title,
+                        progress = 0.80f
+                    ),
+                    TopicProgressUiModel(
+                        title = Res.string.topic_elections_title,
+                        progress = 0.25f
+                    ),
+                    TopicProgressUiModel(
+                        title = Res.string.topic_geography_title,
+                        progress = 0.50f
+                    )
                 )
-            )
+            ),
+            onBottomNavItemSelected = {}
         )
     }
 }
