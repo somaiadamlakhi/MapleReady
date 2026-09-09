@@ -1,6 +1,6 @@
 package com.blueray.mapleready.presentation.study
 
-import com.blueray.mapleready.domain.model.StudyTopicId
+import com.blueray.mapleready.domain.study.model.StudyTopicId
 import org.jetbrains.compose.resources.StringResource
 
 data class StudyUiState(

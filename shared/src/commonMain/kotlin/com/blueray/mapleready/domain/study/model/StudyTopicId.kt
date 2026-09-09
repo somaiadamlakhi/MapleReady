@@ -1,4 +1,4 @@
-package com.blueray.mapleready.domain.model
+package com.blueray.mapleready.domain.study.model
 
 enum class StudyTopicId {
     HISTORY,

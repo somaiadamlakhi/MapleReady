@@ -18,12 +18,14 @@ class ProgressViewModel(
         _uiState.asStateFlow()
 
     init {
-        loadProgress()
+        refresh()
     }
 
-    private fun loadProgress() {
+    fun refresh() {
         _uiState.value = repository
             .getTopics()
-            .toProgressUiState()
+            .toProgressUiState(
+                repository = repository
+            )
     }
 }

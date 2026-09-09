@@ -1,6 +1,7 @@
 package com.blueray.mapleready.navigation
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -33,13 +34,22 @@ fun MapleReadyNavigation(
         viewModelProvider.provideProgressViewModel()
     }
 
+    val homeViewModel = remember {
+        viewModelProvider.provideHomeViewModel()
+    }
+
     when (val current = destination) {
 
         AppDestination.Home -> {
+
+            LaunchedEffect(Unit) {
+                homeViewModel.refresh()
+            }
+
+            val state by homeViewModel.uiState.collectAsState()
+
             HomeScreen(
-                state = HomeUiState(
-                    readiness = 0.72f
-                ),
+                state = state,
                 onStudyClick = {
                     destination = AppDestination.Study
                 },
@@ -74,6 +84,10 @@ fun MapleReadyNavigation(
 
         AppDestination.Progress -> {
 
+            LaunchedEffect(Unit) {
+                progressViewModel.refresh()
+            }
+
             val state by progressViewModel.uiState.collectAsState()
 
             ProgressScreen(
@@ -104,7 +118,11 @@ fun MapleReadyNavigation(
                         studyTopicViewModel.previousSection()
                     },
                     onBackClick = {
+                        studyViewModel.refresh()
                         destination = AppDestination.Study
+                    },
+                    onCompleteSectionClick = {
+                        studyTopicViewModel.markCurrentSectionCompleted()
                     }
                 )
             }

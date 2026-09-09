@@ -23,7 +23,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.blueray.mapleready.domain.model.StudyTopicId
+import com.blueray.mapleready.domain.study.model.StudyTopicId
 import com.blueray.mapleready.presentation.components.BottomNavItem
 import com.blueray.mapleready.presentation.components.MapleReadyBottomBar
 import com.blueray.mapleready.presentation.theme.MapleReadyTheme

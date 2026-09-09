@@ -1,6 +1,6 @@
 package com.blueray.mapleready.navigation
 
-import com.blueray.mapleready.domain.model.StudyTopicId
+import com.blueray.mapleready.domain.study.model.StudyTopicId
 
 sealed interface AppDestination {
 

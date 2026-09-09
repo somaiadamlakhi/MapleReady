@@ -12,22 +12,16 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.outlined.ArrowBack
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -35,7 +29,8 @@ import com.blueray.mapleready.presentation.theme.MapleReadyTheme
 import com.blueray.mapleready.presentation.theme.PracticeBackground
 import com.blueray.mapleready.presentation.theme.ProgressTrack
 import mapleready.shared.generated.resources.Res
-import mapleready.shared.generated.resources.next_section
+import mapleready.shared.generated.resources.complete
+import mapleready.shared.generated.resources.complete_and_next
 import mapleready.shared.generated.resources.previous_section
 import mapleready.shared.generated.resources.section_progress
 import mapleready.shared.generated.resources.topic_history_content_1
@@ -48,29 +43,14 @@ import org.jetbrains.compose.resources.stringResource
 @Composable
 fun StudyTopicScreen(
     state: StudyTopicUiState,
-    onNextSectionClick: () -> Unit = {},
-    onPreviousSectionClick: () -> Unit = {},
-    onBackClick: () -> Unit = {}
+    onNextSectionClick: () -> Unit,
+    onPreviousSectionClick: () -> Unit,
+    onCompleteSectionClick: () -> Unit,
+    onBackClick: () -> Unit
 ) {
     Scaffold(
         topBar = {
-            TopAppBar(
-                title = {
-                    Text(
-                        text = stringResource(state.title)
-                    )
-                },
-                navigationIcon = {
-                    IconButton(
-                        onClick = onBackClick
-                    ) {
-                        Icon(
-                            imageVector = Icons.AutoMirrored.Outlined.ArrowBack,
-                            contentDescription = null
-                        )
-                    }
-                }
-            )
+            // ...
         }
     ) { innerPadding ->
 
@@ -78,6 +58,8 @@ fun StudyTopicScreen(
             state = state,
             onNextSectionClick = onNextSectionClick,
             onPreviousSectionClick = onPreviousSectionClick,
+            onCompleteSectionClick = onCompleteSectionClick,
+            onBackClick = onBackClick,
             modifier = Modifier.padding(innerPadding)
         )
     }
@@ -88,13 +70,14 @@ private fun StudyTopicContent(
     state: StudyTopicUiState,
     onNextSectionClick: () -> Unit,
     onPreviousSectionClick: () -> Unit,
+    onCompleteSectionClick: () -> Unit,
+    onBackClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    val safeIndex = state.currentSectionIndex
-        .coerceIn(
-            0,
-            (state.sections.size - 1).coerceAtLeast(0)
-        )
+    val safeIndex = state.currentSectionIndex.coerceIn(
+        minimumValue = 0,
+        maximumValue = (state.sections.size - 1).coerceAtLeast(0)
+    )
 
     val currentSection = state.sections.getOrNull(safeIndex)
 
@@ -104,12 +87,21 @@ private fun StudyTopicContent(
         0f
     }
 
+    val isFirstSection = safeIndex == 0
+
+    val isLastSection =
+        state.sections.isNotEmpty() &&
+                safeIndex == state.sections.lastIndex
+
     Column(
         modifier = modifier
             .fillMaxSize()
             .background(MaterialTheme.colorScheme.background)
             .verticalScroll(rememberScrollState())
-            .padding(horizontal = 24.dp, vertical = 20.dp),
+            .padding(
+                horizontal = 24.dp,
+                vertical = 20.dp
+            ),
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
 
@@ -119,20 +111,17 @@ private fun StudyTopicContent(
             color = MaterialTheme.colorScheme.primary
         )
 
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Text(
-                text = stringResource(
-                    Res.string.section_progress,
-                    safeIndex + 1,
-                    state.sections.size
-                ),
-                style = MaterialTheme.typography.labelLarge
+        Text(
+            text = stringResource(
+                Res.string.section_progress,
+                safeIndex + 1,
+                state.sections.size
+            ),
+            style = MaterialTheme.typography.labelLarge,
+            color = MaterialTheme.colorScheme.onBackground.copy(
+                alpha = 0.7f
             )
-        }
+        )
 
         LinearProgressIndicator(
             progress = { progress },
@@ -154,10 +143,12 @@ private fun StudyTopicContent(
                     )
                 )
             ) {
+
                 Column(
                     modifier = Modifier.padding(20.dp),
                     verticalArrangement = Arrangement.spacedBy(12.dp)
                 ) {
+
                     Text(
                         text = stringResource(section.title),
                         style = MaterialTheme.typography.titleLarge
@@ -183,7 +174,7 @@ private fun StudyTopicContent(
             horizontalArrangement = Arrangement.spacedBy(12.dp)
         ) {
 
-            if (state.hasPreviousSection) {
+            if (!isFirstSection) {
                 OutlinedButton(
                     onClick = onPreviousSectionClick,
                     modifier = Modifier.weight(1f)
@@ -196,20 +187,30 @@ private fun StudyTopicContent(
                 }
             }
 
-            if (state.hasNextSection) {
-                Button(
-                    onClick = onNextSectionClick,
-                    modifier = Modifier.weight(1f),
-                    colors = ButtonDefaults.buttonColors(
-                        containerColor = MaterialTheme.colorScheme.primary
+            Button(
+                onClick = {
+                    onCompleteSectionClick()
+
+                    if (isLastSection) {
+                        onBackClick()
+                    } else {
+                        onNextSectionClick()
+                    }
+                },
+                modifier = Modifier.weight(1f),
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = MaterialTheme.colorScheme.primary
+                )
+            ) {
+                Text(
+                    text = stringResource(
+                        if (isLastSection) {
+                            Res.string.complete
+                        } else {
+                            Res.string.complete_and_next
+                        }
                     )
-                ) {
-                    Text(
-                        text = stringResource(
-                            Res.string.next_section
-                        )
-                    )
-                }
+                )
             }
         }
     }
@@ -235,7 +236,9 @@ private fun StudyTopicScreenPreview() {
                 )
             ),
             onNextSectionClick = {},
-            onBackClick = {}
+            onBackClick = {},
+            onPreviousSectionClick = {},
+            onCompleteSectionClick = {}
         )
     }
 }

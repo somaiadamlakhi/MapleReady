@@ -1,7 +1,7 @@
 package com.blueray.mapleready.domain.study
 
-import com.blueray.mapleready.domain.model.StudyTopic
-import com.blueray.mapleready.domain.model.StudyTopicId
+import com.blueray.mapleready.domain.study.model.StudyTopic
+import com.blueray.mapleready.domain.study.model.StudyTopicId
 
 interface StudyRepository {
 

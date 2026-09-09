@@ -1,7 +1,7 @@
 package com.blueray.mapleready.presentation.study
 
-import com.blueray.mapleready.domain.model.StudyTopic
-import com.blueray.mapleready.domain.model.StudyTopicId
+import com.blueray.mapleready.domain.study.model.StudyTopic
+import com.blueray.mapleready.domain.study.model.StudyTopicId
 import mapleready.shared.generated.resources.Res
 import mapleready.shared.generated.resources.topic_elections_description
 import mapleready.shared.generated.resources.topic_elections_title
@@ -14,7 +14,9 @@ import mapleready.shared.generated.resources.topic_history_title
 import mapleready.shared.generated.resources.topic_rights_description
 import mapleready.shared.generated.resources.topic_rights_title
 
-fun StudyTopic.toUiModel(): StudyTopicUiModel {
+fun StudyTopic.toUiModel(
+    progress: Float
+): StudyTopicUiModel {
     val resources = when (id) {
         StudyTopicId.HISTORY -> {
             TopicResources(

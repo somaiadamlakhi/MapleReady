@@ -1,7 +1,6 @@
-package com.blueray.mapleready.domain.model
+package com.blueray.mapleready.domain.study.model
 
 data class StudyTopic(
     val id: StudyTopicId,
-    val progress: Float,
     val sections: List<StudySection>
 )

@@ -1,7 +1,9 @@
 package com.blueray.mapleready.presentation.progress
 
-import com.blueray.mapleready.domain.model.StudyTopic
-import com.blueray.mapleready.domain.model.StudyTopicId
+import com.blueray.mapleready.domain.study.model.StudyTopic
+import com.blueray.mapleready.domain.study.model.StudyTopicId
+import com.blueray.mapleready.domain.study.StudyRepository
+import com.blueray.mapleready.domain.study.calculateProgress
 import mapleready.shared.generated.resources.Res
 import mapleready.shared.generated.resources.topic_elections_title
 import mapleready.shared.generated.resources.topic_geography_title
@@ -9,28 +11,45 @@ import mapleready.shared.generated.resources.topic_government_title
 import mapleready.shared.generated.resources.topic_history_title
 import mapleready.shared.generated.resources.topic_rights_title
 
-fun List<StudyTopic>.toProgressUiState(): ProgressUiState {
+fun List<StudyTopic>.toProgressUiState(
+    repository: StudyRepository
+): ProgressUiState {
 
-    val overallReadiness = if (isEmpty()) {
-        0f
-    } else {
-        map { it.progress }.average().toFloat()
+    val topicProgress = map { topic ->
+
+        val completedSections =
+            repository.getCompletedSectionIndexes(
+                topicId = topic.id
+            )
+
+        val progress = topic.calculateProgress(
+            completedSectionIndexes = completedSections
+        )
+
+        TopicProgressUiModel(
+            title = topic.id.toTitleResource(),
+            progress = progress
+        )
     }
 
-    val completedTopics = count {
+    val overallReadiness = if (topicProgress.isEmpty()) {
+        0f
+    } else {
+        topicProgress
+            .map { it.progress }
+            .average()
+            .toFloat()
+    }
+
+    val completedTopics = topicProgress.count {
         it.progress >= 1f
     }
 
     return ProgressUiState(
         overallReadiness = overallReadiness,
         completedTopics = completedTopics,
-        totalTopics = size,
-        topicProgress = map { topic ->
-            TopicProgressUiModel(
-                title = topic.id.toTitleResource(),
-                progress = topic.progress
-            )
-        }
+        totalTopics = topicProgress.size,
+        topicProgress = topicProgress
     )
 }
 

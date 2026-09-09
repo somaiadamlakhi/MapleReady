@@ -2,6 +2,7 @@ package com.blueray.mapleready.presentation.study
 
 import androidx.lifecycle.ViewModel
 import com.blueray.mapleready.domain.study.StudyRepository
+import com.blueray.mapleready.domain.study.calculateProgress
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -10,6 +11,9 @@ class StudyViewModel(
     private val repository: StudyRepository
 ) : ViewModel() {
 
+    init {
+        refresh()
+    }
     private val _uiState = MutableStateFlow(
         StudyUiState()
     )
@@ -25,7 +29,43 @@ class StudyViewModel(
         val topics = repository
             .getTopics()
             .map { topic ->
-                topic.toUiModel()
+
+                val completedSections =
+                    repository.getCompletedSectionIndexes(
+                        topicId = topic.id
+                    )
+
+                val progress = topic.calculateProgress(
+                    completedSectionIndexes = completedSections
+                )
+
+                topic.toUiModel(
+                    progress = progress
+                )
+            }
+
+        _uiState.value = StudyUiState(
+            topics = topics
+        )
+    }
+
+    fun refresh() {
+        val topics = repository
+            .getTopics()
+            .map { topic ->
+
+                val completedSections =
+                    repository.getCompletedSectionIndexes(
+                        topicId = topic.id
+                    )
+
+                val progress = topic.calculateProgress(
+                    completedSectionIndexes = completedSections
+                )
+
+                topic.toUiModel(
+                    progress = progress
+                )
             }
 
         _uiState.value = StudyUiState(

@@ -45,4 +45,7 @@
     <string name="overall_readiness">Overall Readiness</string>
     <string name="topics_completed">%1$d of %2$d topics completed</string>
     <string name="percentage">%1$d%</string>
+    <string name="previous">Previous</string>
+    <string name="complete">Complete</string>
+    <string name="complete_and_next">Complete &amp; Next</string>
 </resources>
