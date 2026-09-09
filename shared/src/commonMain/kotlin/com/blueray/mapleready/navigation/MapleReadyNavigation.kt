@@ -6,19 +6,18 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import com.blueray.mapleready.data.study.StudyRepositoryImpl
+import com.blueray.mapleready.di.ViewModelProvider
 import com.blueray.mapleready.presentation.components.BottomNavItem
 import com.blueray.mapleready.presentation.home.HomeScreen
 import com.blueray.mapleready.presentation.home.HomeUiState
 import com.blueray.mapleready.presentation.progress.ProgressScreen
-import com.blueray.mapleready.presentation.progress.ProgressViewModel
 import com.blueray.mapleready.presentation.study.StudyScreen
-import com.blueray.mapleready.presentation.study.StudyViewModel
 import com.blueray.mapleready.presentation.study.topic.StudyTopicScreen
-import com.blueray.mapleready.presentation.study.topic.StudyTopicViewModel
 
 @Composable
-fun MapleReadyNavigation() {
+fun MapleReadyNavigation(
+    viewModelProvider: ViewModelProvider
+) {
 
     var destination by remember {
         mutableStateOf<AppDestination>(
@@ -26,9 +25,14 @@ fun MapleReadyNavigation() {
         )
     }
 
-    val studyRepository = remember {
-        StudyRepositoryImpl()
+    val studyViewModel = remember {
+        viewModelProvider.provideStudyViewModel()
     }
+
+    val progressViewModel = remember {
+        viewModelProvider.provideProgressViewModel()
+    }
+
     when (val current = destination) {
 
         AppDestination.Home -> {
@@ -53,12 +57,6 @@ fun MapleReadyNavigation() {
 
         AppDestination.Study -> {
 
-            val studyViewModel = remember {
-                StudyViewModel(
-                    repository = studyRepository
-                )
-            }
-
             val state by studyViewModel.uiState.collectAsState()
 
             StudyScreen(
@@ -76,12 +74,6 @@ fun MapleReadyNavigation() {
 
         AppDestination.Progress -> {
 
-            val progressViewModel = remember {
-                ProgressViewModel(
-                    repository = studyRepository
-                )
-            }
-
             val state by progressViewModel.uiState.collectAsState()
 
             ProgressScreen(
@@ -95,9 +87,8 @@ fun MapleReadyNavigation() {
         is AppDestination.StudyTopic -> {
 
             val studyTopicViewModel = remember(current.topicId) {
-                StudyTopicViewModel(
-                    topicId = current.topicId,
-                    repository = studyRepository
+                viewModelProvider.provideStudyTopicViewModel(
+                    topicId = current.topicId
                 )
             }
 
