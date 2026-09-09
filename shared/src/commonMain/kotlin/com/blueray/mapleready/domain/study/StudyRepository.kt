@@ -10,4 +10,13 @@ interface StudyRepository {
     fun getTopicById(
         id: StudyTopicId
     ): StudyTopic?
+
+    fun markSectionCompleted(
+        topicId: StudyTopicId,
+        sectionIndex: Int
+    )
+
+    fun getCompletedSectionIndexes(
+        topicId: StudyTopicId
+    ): Set<Int>
 }

@@ -6,7 +6,8 @@ import com.blueray.mapleready.domain.model.StudyTopicId
 import com.blueray.mapleready.domain.study.StudyRepository
 
 class StudyRepositoryImpl : StudyRepository {
-
+    private val completedSections =
+        mutableMapOf<StudyTopicId, MutableSet<Int>>()
     private val topics = listOf(
         StudyTopic(
             id = StudyTopicId.HISTORY,
@@ -53,4 +54,22 @@ class StudyRepositoryImpl : StudyRepository {
     ): StudyTopic? {
         return topics.firstOrNull { it.id == id }
     }
+
+    override fun markSectionCompleted(
+        topicId: StudyTopicId,
+        sectionIndex: Int
+    ) {
+        completedSections
+            .getOrPut(topicId) { mutableSetOf() }
+            .add(sectionIndex)
+    }
+
+    override fun getCompletedSectionIndexes(
+        topicId: StudyTopicId
+    ): Set<Int> {
+        return completedSections[topicId]
+            ?.toSet()
+            ?: emptySet()
+    }
+
 }
