@@ -1,6 +1,7 @@
 package com.blueray.mapleready.navigation
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -10,19 +11,14 @@ import com.blueray.mapleready.presentation.components.BottomNavItem
 import com.blueray.mapleready.presentation.home.HomeScreen
 import com.blueray.mapleready.presentation.home.HomeUiState
 import com.blueray.mapleready.presentation.progress.ProgressScreen
-import com.blueray.mapleready.presentation.progress.toProgressUiState
+import com.blueray.mapleready.presentation.progress.ProgressViewModel
 import com.blueray.mapleready.presentation.study.StudyScreen
-import com.blueray.mapleready.presentation.study.StudyUiState
-import com.blueray.mapleready.presentation.study.toUiModel
+import com.blueray.mapleready.presentation.study.StudyViewModel
 import com.blueray.mapleready.presentation.study.topic.StudyTopicScreen
-import com.blueray.mapleready.presentation.study.topic.toTopicUiState
+import com.blueray.mapleready.presentation.study.topic.StudyTopicViewModel
 
 @Composable
 fun MapleReadyNavigation() {
-
-    var currentSectionIndex by remember {
-        mutableStateOf(0)
-    }
 
     var destination by remember {
         mutableStateOf<AppDestination>(
@@ -57,19 +53,17 @@ fun MapleReadyNavigation() {
 
         AppDestination.Study -> {
 
-            val topics = studyRepository
-                .getTopics()
-                .map { topic ->
-                    topic.toUiModel()
-                }
+            val studyViewModel = remember {
+                StudyViewModel(
+                    repository = studyRepository
+                )
+            }
+
+            val state by studyViewModel.uiState.collectAsState()
 
             StudyScreen(
-                state = StudyUiState(
-                    topics = topics
-                ),
+                state = state,
                 onTopicClick = { topic ->
-                    currentSectionIndex = 0
-
                     destination = AppDestination.StudyTopic(
                         topicId = topic.id
                     )
@@ -82,12 +76,16 @@ fun MapleReadyNavigation() {
 
         AppDestination.Progress -> {
 
-            val progressState = studyRepository
-                .getTopics()
-                .toProgressUiState()
+            val progressViewModel = remember {
+                ProgressViewModel(
+                    repository = studyRepository
+                )
+            }
+
+            val state by progressViewModel.uiState.collectAsState()
 
             ProgressScreen(
-                state = progressState,
+                state = state,
                 onBottomNavItemSelected = { item ->
                     destination = item.toDestination()
                 }
@@ -96,31 +94,24 @@ fun MapleReadyNavigation() {
 
         is AppDestination.StudyTopic -> {
 
-            val topic = studyRepository.getTopicById(
-                current.topicId
-            )
-
-            if (topic != null) {
-
-                val topicState = topic.toTopicUiState(
-                    currentSectionIndex = currentSectionIndex
+            val studyTopicViewModel = remember(current.topicId) {
+                StudyTopicViewModel(
+                    topicId = current.topicId,
+                    repository = studyRepository
                 )
+            }
 
+            val state by studyTopicViewModel.uiState.collectAsState()
+
+            state?.let { topicState ->
                 StudyTopicScreen(
                     state = topicState,
-
                     onNextSectionClick = {
-                        if (currentSectionIndex < topicState.sections.lastIndex) {
-                            currentSectionIndex++
-                        }
+                        studyTopicViewModel.nextSection()
                     },
-
                     onPreviousSectionClick = {
-                        if (currentSectionIndex > 0) {
-                            currentSectionIndex--
-                        }
+                        studyTopicViewModel.previousSection()
                     },
-
                     onBackClick = {
                         destination = AppDestination.Study
                     }
