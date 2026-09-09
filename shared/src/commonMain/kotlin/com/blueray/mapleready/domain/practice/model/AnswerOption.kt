@@ -1,4 +1,6 @@
 package com.blueray.mapleready.domain.practice.model
 
-class AnswerOption {
-}
+data class AnswerOption(
+    val id: String,
+    val isCorrect: Boolean
+)
