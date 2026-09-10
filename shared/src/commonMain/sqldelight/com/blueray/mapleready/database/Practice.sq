@@ -32,3 +32,29 @@ selectAnswersForQuestion:
 SELECT *
 FROM PracticeAnswer
 WHERE questionId = ?;
+
+
+insertQuestion:
+INSERT INTO PracticeQuestion(
+    topicId,
+    questionText
+)
+VALUES (?, ?);
+
+insertAnswer:
+INSERT INTO PracticeAnswer(
+    questionId,
+    answerText,
+    isCorrect
+)
+VALUES (?, ?, ?);
+
+countQuestions:
+SELECT COUNT(*)
+FROM PracticeQuestion;
+
+deleteAllAnswers:
+DELETE FROM PracticeAnswer;
+
+deleteAllQuestions:
+DELETE FROM PracticeQuestion;
