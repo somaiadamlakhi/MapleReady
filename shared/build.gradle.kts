@@ -17,8 +17,10 @@ kotlin {
         iosTarget.binaries.framework {
             baseName = "Shared"
             isStatic = true
-            // Workaround for: Failed to build cache for Compose Multiplatform ui-uikit klib
+
             freeCompilerArgs = freeCompilerArgs + "-Xnative-cache-kind=none"
+
+            linkerOpts("-lsqlite3")
         }
     }
     
@@ -42,12 +44,15 @@ kotlin {
            instrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
        }
     }
-    
+
     sourceSets {
         androidMain.dependencies {
             implementation(libs.compose.uiToolingPreview)
             implementation(libs.compose.uiTooling)
+
+            implementation(libs.sqldelight.android.driver)
         }
+
         commonMain.dependencies {
             implementation(libs.compose.runtime)
             implementation(libs.compose.foundation)
@@ -58,9 +63,24 @@ kotlin {
             implementation(libs.androidx.lifecycle.viewmodelCompose)
             implementation(libs.androidx.lifecycle.runtimeCompose)
             implementation(libs.compose.materialIconsExtended)
+
+            implementation(libs.sqldelight.coroutines)
         }
+
+        iosMain.dependencies {
+            implementation(libs.sqldelight.native.driver)
+        }
+
         commonTest.dependencies {
             implementation(libs.kotlin.test)
+        }
+    }
+}
+
+sqldelight {
+    databases {
+        create("MapleReadyDatabase") {
+            packageName.set("com.blueray.mapleready.database")
         }
     }
 }
