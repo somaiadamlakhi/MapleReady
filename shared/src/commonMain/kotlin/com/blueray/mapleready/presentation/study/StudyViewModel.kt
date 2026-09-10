@@ -11,9 +11,6 @@ class StudyViewModel(
     private val repository: StudyRepository
 ) : ViewModel() {
 
-    init {
-        refresh()
-    }
     private val _uiState = MutableStateFlow(
         StudyUiState()
     )
@@ -22,31 +19,7 @@ class StudyViewModel(
         _uiState.asStateFlow()
 
     init {
-        loadTopics()
-    }
-
-    private fun loadTopics() {
-        val topics = repository
-            .getTopics()
-            .map { topic ->
-
-                val completedSections =
-                    repository.getCompletedSectionIndexes(
-                        topicId = topic.id
-                    )
-
-                val progress = topic.calculateProgress(
-                    completedSectionIndexes = completedSections
-                )
-
-                topic.toUiModel(
-                    progress = progress
-                )
-            }
-
-        _uiState.value = StudyUiState(
-            topics = topics
-        )
+        refresh()
     }
 
     fun refresh() {

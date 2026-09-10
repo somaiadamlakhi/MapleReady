@@ -48,4 +48,10 @@
     <string name="previous">Previous</string>
     <string name="complete">Complete</string>
     <string name="complete_and_next">Complete &amp; Next</string>
+    <string name="history_q1">Who were the first people to live in Canada?</string>
+
+    <string name="history_q1_a">Indigenous peoples</string>
+    <string name="history_q1_b">European settlers</string>
+    <string name="history_q1_c">British soldiers</string>
+    <string name="history_q1_d">French explorers</string>
 </resources>

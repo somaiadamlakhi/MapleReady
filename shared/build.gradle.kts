@@ -1,12 +1,12 @@
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
-import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeCacheApi
-import org.jetbrains.kotlin.gradle.plugin.mpp.DisableCacheInKotlinVersion
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidMultiplatformLibrary)
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
+
+    alias(libs.plugins.sqldelight)
 }
 
 kotlin {
@@ -17,11 +17,8 @@ kotlin {
         iosTarget.binaries.framework {
             baseName = "Shared"
             isStatic = true
-            @OptIn(KotlinNativeCacheApi::class)
-            disableNativeCache(
-                version = DisableCacheInKotlinVersion.`2_4_10`,
-                reason = "Failed to build cache for Compose Multiplatform ui-uikit klib"
-            )
+            // Workaround for: Failed to build cache for Compose Multiplatform ui-uikit klib
+            freeCompilerArgs = freeCompilerArgs + "-Xnative-cache-kind=none"
         }
     }
     
@@ -60,7 +57,7 @@ kotlin {
             implementation(libs.compose.uiToolingPreview)
             implementation(libs.androidx.lifecycle.viewmodelCompose)
             implementation(libs.androidx.lifecycle.runtimeCompose)
-            implementation(compose.materialIconsExtended)
+            implementation(libs.compose.materialIconsExtended)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
