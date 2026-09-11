@@ -1,5 +1,6 @@
 package com.blueray.mapleready.di
 
+import com.blueray.mapleready.data.practice.PracticeDataSeeder
 import com.blueray.mapleready.data.practice.PracticeRepositoryImpl
 import com.blueray.mapleready.data.study.StudyRepositoryImpl
 import com.blueray.mapleready.database.DatabaseDriverFactory
@@ -13,6 +14,12 @@ class AppContainer(
 
     private val database =
         createDatabase(driverFactory)
+
+    init {
+        PracticeDataSeeder(
+            database = database
+        ).seedIfNeeded()
+    }
 
     private val studyRepository: StudyRepository =
         StudyRepositoryImpl()

@@ -2,15 +2,17 @@ package com.blueray.mapleready.navigation
 
 import com.blueray.mapleready.domain.study.model.StudyTopicId
 
-sealed interface AppDestination {
+sealed class AppDestination {
 
-    data object Home : AppDestination
+    data object Home : AppDestination()
 
-    data object Study : AppDestination
+    data object Study : AppDestination()
 
-    data object Progress : AppDestination
+    data object Progress : AppDestination()
+
+    data object Practice : AppDestination()
 
     data class StudyTopic(
         val topicId: StudyTopicId
-    ) : AppDestination
+    ) : AppDestination()
 }
