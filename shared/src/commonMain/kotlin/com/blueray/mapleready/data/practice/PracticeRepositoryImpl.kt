@@ -1,6 +1,7 @@
 package com.blueray.mapleready.data.practice
 
 import com.blueray.mapleready.database.MapleReadyDatabase
+import com.blueray.mapleready.domain.language.AppLanguage
 import com.blueray.mapleready.domain.practice.PracticeRepository
 import com.blueray.mapleready.domain.practice.model.AnswerOption
 import com.blueray.mapleready.domain.practice.model.PracticeQuestion
@@ -12,49 +13,76 @@ class PracticeRepositoryImpl(
 
     private val queries = database.practiceQueries
 
-    override fun getQuestions(): List<PracticeQuestion> {
+    override fun getQuestions(
+        language: AppLanguage
+    ): List<PracticeQuestion> {
+
         return queries
-            .selectAllQuestions()
+            .selectAllQuestionsByLanguage(
+                languageCode = language.code
+            )
             .executeAsList()
             .map { question ->
-                question.toDomain()
+
+                PracticeQuestion(
+                    id = question.id,
+                    topicId = StudyTopicId.valueOf(
+                        question.topicId
+                    ),
+                    text = question.questionText,
+                    answers = getAnswers(
+                        questionId = question.id,
+                        language = language
+                    )
+                )
             }
     }
 
     override fun getQuestionsByTopic(
-        topicId: StudyTopicId
+        topicId: StudyTopicId,
+        language: AppLanguage
     ): List<PracticeQuestion> {
+
         return queries
-            .selectQuestionsByTopic(
-                topicId = topicId.name
+            .selectQuestionsByTopicAndLanguage(
+                topicId = topicId.name,
+                languageCode = language.code
             )
             .executeAsList()
             .map { question ->
-                question.toDomain()
+
+                PracticeQuestion(
+                    id = question.id,
+                    topicId = StudyTopicId.valueOf(
+                        question.topicId
+                    ),
+                    text = question.questionText,
+                    answers = getAnswers(
+                        questionId = question.id,
+                        language = language
+                    )
+                )
             }
     }
 
-    private fun com.blueray.mapleready.database.PracticeQuestion.toDomain():
-            PracticeQuestion {
+    private fun getAnswers(
+        questionId: Long,
+        language: AppLanguage
+    ): List<AnswerOption> {
 
-        val answers = queries
-            .selectAnswersForQuestion(
-                questionId = id
+        return queries
+            .selectAnswersForQuestionAndLanguage(
+                questionId = questionId,
+                languageCode = language.code
             )
             .executeAsList()
             .map { answer ->
+
                 AnswerOption(
                     id = answer.id,
                     text = answer.answerText,
                     isCorrect = answer.isCorrect == 1L
                 )
             }
-
-        return PracticeQuestion(
-            id = id,
-            topicId = StudyTopicId.valueOf(topicId),
-            text = questionText,
-            answers = answers
-        )
     }
 }
