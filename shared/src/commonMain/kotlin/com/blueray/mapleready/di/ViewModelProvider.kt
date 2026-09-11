@@ -4,6 +4,7 @@ import com.blueray.mapleready.domain.practice.PracticeRepository
 import com.blueray.mapleready.domain.study.StudyRepository
 import com.blueray.mapleready.domain.study.model.StudyTopicId
 import com.blueray.mapleready.presentation.home.HomeViewModel
+import com.blueray.mapleready.presentation.practice.PracticeViewModel
 import com.blueray.mapleready.presentation.progress.ProgressViewModel
 import com.blueray.mapleready.presentation.study.StudyViewModel
 import com.blueray.mapleready.presentation.study.topic.StudyTopicViewModel
@@ -34,5 +35,11 @@ class ViewModelProvider(
         StudyTopicViewModel(
             topicId = topicId,
             repository = studyRepository
+        )
+
+
+    fun providePracticeViewModel(): PracticeViewModel =
+        PracticeViewModel(
+            repository = practiceRepository
         )
 }
