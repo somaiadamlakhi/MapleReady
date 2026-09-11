@@ -8,9 +8,10 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import com.blueray.mapleready.di.ViewModelProvider
+import com.blueray.mapleready.domain.study.model.StudyTopicId
 import com.blueray.mapleready.presentation.components.BottomNavItem
 import com.blueray.mapleready.presentation.home.HomeScreen
-import com.blueray.mapleready.presentation.home.HomeUiState
+import com.blueray.mapleready.presentation.practice.PracticeScreen
 import com.blueray.mapleready.presentation.progress.ProgressScreen
 import com.blueray.mapleready.presentation.study.StudyScreen
 import com.blueray.mapleready.presentation.study.topic.StudyTopicScreen
@@ -38,6 +39,10 @@ fun MapleReadyNavigation(
         viewModelProvider.provideHomeViewModel()
     }
 
+    val practiceViewModel = remember {
+        viewModelProvider.providePracticeViewModel()
+    }
+
     when (val current = destination) {
 
         AppDestination.Home -> {
@@ -54,7 +59,7 @@ fun MapleReadyNavigation(
                     destination = AppDestination.Study
                 },
                 onPracticeClick = {
-                    // later
+                    destination = AppDestination.Practice
                 },
                 onMockTestClick = {
                     // later
@@ -98,6 +103,33 @@ fun MapleReadyNavigation(
             )
         }
 
+        AppDestination.Practice -> {
+
+            LaunchedEffect(Unit) {
+                practiceViewModel.loadQuestions(
+                    topicId = StudyTopicId.HISTORY
+                )
+            }
+
+            val state by practiceViewModel.uiState.collectAsState()
+
+            PracticeScreen(
+                state = state,
+                onAnswerClick = { answerId ->
+                    practiceViewModel.selectAnswer(answerId)
+                },
+                onCheckAnswerClick = {
+                    practiceViewModel.checkAnswer()
+                },
+                onNextQuestionClick = {
+                    practiceViewModel.nextQuestion()
+                },
+                onBackClick = {
+                    destination = AppDestination.Home
+                }
+            )
+        }
+
         is AppDestination.StudyTopic -> {
 
             val studyTopicViewModel = remember(current.topicId) {
@@ -127,8 +159,6 @@ fun MapleReadyNavigation(
                 )
             }
         }
-
-        else -> {}
     }
 }
 

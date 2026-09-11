@@ -54,4 +54,13 @@
     <string name="history_q1_b">European settlers</string>
     <string name="history_q1_c">British soldiers</string>
     <string name="history_q1_d">French explorers</string>
+
+    <string name="practice_history">History</string>
+    <string name="practice_question_progress">Question %1$d of %2$d</string>
+    <string name="practice_check_answer">Check Answer</string>
+    <string name="practice_next_question">Next Question</string>
+    <string name="practice_correct">Correct!</string>
+    <string name="practice_incorrect">Not quite</string>
+    <string name="practice_no_questions">No practice questions available.</string>
+    <string name="practice_back">Back</string>
 </resources>

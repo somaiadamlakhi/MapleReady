@@ -29,4 +29,40 @@ class PracticeViewModel(
             questions = questions
         )
     }
+
+    fun selectAnswer(
+        answerId: Long
+    ) {
+        if (_uiState.value.isAnswerChecked) {
+            return
+        }
+
+        _uiState.value = _uiState.value.copy(
+            selectedAnswerId = answerId
+        )
+    }
+
+    fun checkAnswer() {
+        if (_uiState.value.selectedAnswerId == null) {
+            return
+        }
+
+        _uiState.value = _uiState.value.copy(
+            isAnswerChecked = true
+        )
+    }
+
+    fun nextQuestion() {
+        val state = _uiState.value
+
+        if (state.isLastQuestion) {
+            return
+        }
+
+        _uiState.value = state.copy(
+            currentQuestionIndex = state.currentQuestionIndex + 1,
+            selectedAnswerId = null,
+            isAnswerChecked = false
+        )
+    }
 }
