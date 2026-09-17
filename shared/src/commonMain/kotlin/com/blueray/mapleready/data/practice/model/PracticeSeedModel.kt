@@ -3,6 +3,12 @@ package com.blueray.mapleready.data.practice.model
 import kotlinx.serialization.Serializable
 
 @Serializable
+data class PracticeSeedData(
+    val version: Int,
+    val questions: List<PracticeSeedQuestion>
+)
+
+@Serializable
 data class PracticeSeedQuestion(
     val id: Long,
     val topicId: String,

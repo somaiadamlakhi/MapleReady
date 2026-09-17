@@ -12,16 +12,21 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -48,11 +53,7 @@ fun StudyTopicScreen(
     onCompleteSectionClick: () -> Unit,
     onBackClick: () -> Unit
 ) {
-    Scaffold(
-        topBar = {
-            // ...
-        }
-    ) { innerPadding ->
+    Scaffold { innerPadding ->
 
         StudyTopicContent(
             state = state,
@@ -74,143 +75,217 @@ private fun StudyTopicContent(
     onBackClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    val safeIndex = state.currentSectionIndex.coerceIn(
-        minimumValue = 0,
-        maximumValue = (state.sections.size - 1).coerceAtLeast(0)
-    )
 
-    val currentSection = state.sections.getOrNull(safeIndex)
+    val hasSections = state.sections.isNotEmpty()
 
-    val progress = if (state.sections.isNotEmpty()) {
+    val safeIndex = if (hasSections) {
+        state.currentSectionIndex.coerceIn(
+            minimumValue = 0,
+            maximumValue = state.sections.lastIndex
+        )
+    } else {
+        0
+    }
+
+    val currentSection =
+        state.sections.getOrNull(safeIndex)
+
+    val progress = if (hasSections) {
         (safeIndex + 1f) / state.sections.size
     } else {
         0f
     }
 
-    val isFirstSection = safeIndex == 0
+    val isFirstSection =
+        safeIndex == 0
 
     val isLastSection =
-        state.sections.isNotEmpty() &&
+        hasSections &&
                 safeIndex == state.sections.lastIndex
 
     Column(
         modifier = modifier
             .fillMaxSize()
-            .background(MaterialTheme.colorScheme.background)
-            .verticalScroll(rememberScrollState())
+            .background(
+                MaterialTheme.colorScheme.background
+            )
+            .verticalScroll(
+                rememberScrollState()
+            )
             .padding(
                 horizontal = 24.dp,
-                vertical = 20.dp
+                vertical = 12.dp
             ),
-        verticalArrangement = Arrangement.spacedBy(16.dp)
+        verticalArrangement =
+            Arrangement.spacedBy(16.dp)
     ) {
 
-        Text(
-            text = stringResource(state.title),
-            style = MaterialTheme.typography.headlineLarge,
-            color = MaterialTheme.colorScheme.primary
-        )
-
-        Text(
-            text = stringResource(
-                Res.string.section_progress,
-                safeIndex + 1,
-                state.sections.size
-            ),
-            style = MaterialTheme.typography.labelLarge,
-            color = MaterialTheme.colorScheme.onBackground.copy(
-                alpha = 0.7f
-            )
-        )
-
-        LinearProgressIndicator(
-            progress = { progress },
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(8.dp),
-            color = MaterialTheme.colorScheme.primary,
-            trackColor = ProgressTrack
-        )
-
-        currentSection?.let { section ->
-
-            Card(
-                modifier = Modifier.fillMaxWidth(),
-                shape = RoundedCornerShape(20.dp),
-                colors = CardDefaults.cardColors(
-                    containerColor = PracticeBackground.copy(
-                        alpha = 0.55f
-                    )
-                )
-            ) {
-
-                Column(
-                    modifier = Modifier.padding(20.dp),
-                    verticalArrangement = Arrangement.spacedBy(12.dp)
-                ) {
-
-                    Text(
-                        text = stringResource(section.title),
-                        style = MaterialTheme.typography.titleLarge
-                    )
-
-                    Text(
-                        text = stringResource(section.content),
-                        style = MaterialTheme.typography.bodyLarge,
-                        color = MaterialTheme.colorScheme.onSurface.copy(
-                            alpha = 0.82f
-                        )
-                    )
-                }
-            }
-        }
-
-        Spacer(
-            modifier = Modifier.height(8.dp)
-        )
-
+        // Header
         Row(
             modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.spacedBy(12.dp)
+            verticalAlignment = Alignment.CenterVertically
         ) {
 
-            if (!isFirstSection) {
-                OutlinedButton(
-                    onClick = onPreviousSectionClick,
-                    modifier = Modifier.weight(1f)
-                ) {
-                    Text(
-                        text = stringResource(
-                            Res.string.previous_section
+            IconButton(
+                onClick = onBackClick
+            ) {
+                Icon(
+                    imageVector =
+                        Icons.AutoMirrored.Filled.ArrowBack,
+                    contentDescription = null,
+                    tint =
+                        MaterialTheme.colorScheme.primary
+                )
+            }
+
+            Text(
+                text = stringResource(
+                    state.title
+                ),
+                style =
+                    MaterialTheme.typography.headlineLarge,
+                color =
+                    MaterialTheme.colorScheme.primary
+            )
+        }
+
+        // Only show section information
+        // when the topic actually has sections.
+        if (hasSections) {
+
+            Text(
+                text = stringResource(
+                    Res.string.section_progress,
+                    safeIndex + 1,
+                    state.sections.size
+                ),
+                style =
+                    MaterialTheme.typography.labelLarge,
+                color =
+                    MaterialTheme.colorScheme.onBackground
+                        .copy(alpha = 0.7f)
+            )
+
+            LinearProgressIndicator(
+                progress = {
+                    progress
+                },
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(8.dp),
+                color =
+                    MaterialTheme.colorScheme.primary,
+                trackColor = ProgressTrack
+            )
+
+            currentSection?.let { section ->
+
+                Card(
+                    modifier =
+                        Modifier.fillMaxWidth(),
+                    shape =
+                        RoundedCornerShape(20.dp),
+                    colors =
+                        CardDefaults.cardColors(
+                            containerColor =
+                                PracticeBackground.copy(
+                                    alpha = 0.55f
+                                )
                         )
-                    )
+                ) {
+
+                    Column(
+                        modifier =
+                            Modifier.padding(20.dp),
+                        verticalArrangement =
+                            Arrangement.spacedBy(12.dp)
+                    ) {
+
+                        Text(
+                            text = stringResource(
+                                section.title
+                            ),
+                            style =
+                                MaterialTheme.typography
+                                    .titleLarge
+                        )
+
+                        Text(
+                            text = stringResource(
+                                section.content
+                            ),
+                            style =
+                                MaterialTheme.typography
+                                    .bodyLarge,
+                            color =
+                                MaterialTheme.colorScheme
+                                    .onSurface
+                                    .copy(alpha = 0.82f)
+                        )
+                    }
                 }
             }
 
-            Button(
-                onClick = {
-                    onCompleteSectionClick()
+            Spacer(
+                modifier =
+                    Modifier.height(8.dp)
+            )
 
-                    if (isLastSection) {
-                        onBackClick()
-                    } else {
-                        onNextSectionClick()
-                    }
-                },
-                modifier = Modifier.weight(1f),
-                colors = ButtonDefaults.buttonColors(
-                    containerColor = MaterialTheme.colorScheme.primary
-                )
+            Row(
+                modifier =
+                    Modifier.fillMaxWidth(),
+                horizontalArrangement =
+                    Arrangement.spacedBy(12.dp)
             ) {
-                Text(
-                    text = stringResource(
+
+                if (!isFirstSection) {
+
+                    OutlinedButton(
+                        onClick =
+                            onPreviousSectionClick,
+                        modifier =
+                            Modifier.weight(1f)
+                    ) {
+
+                        Text(
+                            text = stringResource(
+                                Res.string.previous_section
+                            )
+                        )
+                    }
+                }
+
+                Button(
+                    onClick = {
+
+                        onCompleteSectionClick()
+
                         if (isLastSection) {
-                            Res.string.complete
+                            onBackClick()
                         } else {
-                            Res.string.complete_and_next
+                            onNextSectionClick()
                         }
+                    },
+                    modifier =
+                        Modifier.weight(1f),
+                    colors =
+                        ButtonDefaults.buttonColors(
+                            containerColor =
+                                MaterialTheme.colorScheme
+                                    .primary
+                        )
+                ) {
+
+                    Text(
+                        text = stringResource(
+                            if (isLastSection) {
+                                Res.string.complete
+                            } else {
+                                Res.string.complete_and_next
+                            }
+                        )
                     )
-                )
+                }
             }
         }
     }
@@ -219,26 +294,33 @@ private fun StudyTopicContent(
 @Preview
 @Composable
 private fun StudyTopicScreenPreview() {
+
     MapleReadyTheme {
+
         StudyTopicScreen(
             state = StudyTopicUiState(
-                title = Res.string.topic_history_title,
+                title =
+                    Res.string.topic_history_title,
                 currentSectionIndex = 0,
                 sections = listOf(
                     StudyTopicSectionUiModel(
-                        title = Res.string.topic_history_section_1,
-                        content = Res.string.topic_history_content_1
+                        title =
+                            Res.string.topic_history_section_1,
+                        content =
+                            Res.string.topic_history_content_1
                     ),
                     StudyTopicSectionUiModel(
-                        title = Res.string.topic_history_section_2,
-                        content = Res.string.topic_history_content_2
+                        title =
+                            Res.string.topic_history_section_2,
+                        content =
+                            Res.string.topic_history_content_2
                     )
                 )
             ),
             onNextSectionClick = {},
-            onBackClick = {},
             onPreviousSectionClick = {},
-            onCompleteSectionClick = {}
+            onCompleteSectionClick = {},
+            onBackClick = {}
         )
     }
 }

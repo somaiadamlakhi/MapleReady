@@ -37,6 +37,13 @@ CREATE TABLE PracticeAnswerText (
         ON DELETE CASCADE
 );
 
+CREATE TABLE PracticeMetadata (
+    key TEXT NOT NULL PRIMARY KEY,
+    value TEXT NOT NULL
+);
+
+
+
 selectAllQuestionsByLanguage:
 SELECT
     q.id,
@@ -81,6 +88,18 @@ JOIN PracticeAnswerText at
 WHERE a.questionId = ?
   AND at.languageCode = ?;
 
+getMetadataValue:
+SELECT value
+FROM PracticeMetadata
+WHERE key = ?;
+
+setMetadataValue:
+INSERT OR REPLACE INTO PracticeMetadata(
+    key,
+    value
+)
+VALUES (?, ?);
+
 insertQuestion:
 INSERT INTO PracticeQuestion(
     id,
@@ -112,9 +131,6 @@ INSERT INTO PracticeAnswerText(
 )
 VALUES (?, ?, ?);
 
-countQuestions:
-SELECT COUNT(*)
-FROM PracticeQuestion;
 
 deleteAllAnswerTexts:
 DELETE FROM PracticeAnswerText;
