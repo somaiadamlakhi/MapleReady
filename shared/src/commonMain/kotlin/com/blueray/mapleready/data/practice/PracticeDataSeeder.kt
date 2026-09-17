@@ -1,7 +1,9 @@
 package com.blueray.mapleready.data.practice
 
+import com.blueray.mapleready.data.practice.model.PracticeSeedQuestion
 import com.blueray.mapleready.database.MapleReadyDatabase
-import com.blueray.mapleready.domain.study.model.StudyTopicId
+import kotlinx.serialization.json.Json
+import mapleready.shared.generated.resources.Res
 
 class PracticeDataSeeder(
     private val database: MapleReadyDatabase
@@ -9,7 +11,12 @@ class PracticeDataSeeder(
 
     private val queries = database.practiceQueries
 
-    fun seedIfNeeded() {
+    private val json = Json {
+        ignoreUnknownKeys = true
+    }
+
+    suspend fun seedIfNeeded() {
+
         val questionCount = queries
             .countQuestions()
             .executeAsOne()
@@ -18,87 +25,54 @@ class PracticeDataSeeder(
             return
         }
 
-        seedHistoryQuestion()
+        val jsonText = Res
+            .readBytes("files/practice_questions.json")
+            .decodeToString()
+
+        val questions =
+            json.decodeFromString<List<PracticeSeedQuestion>>(
+                jsonText
+            )
+
+        questions.forEach { question ->
+            insertQuestion(question)
+        }
     }
 
-    private fun seedHistoryQuestion() {
-
-        val questionId = 1001L
-
-        queries.insertQuestion(
-            id = questionId,
-            topicId = StudyTopicId.HISTORY.name
-        )
-
-        queries.insertQuestionText(
-            questionId = questionId,
-            languageCode = "en",
-            questionText = "Who was Canada's first Prime Minister?"
-        )
-
-        queries.insertQuestionText(
-            questionId = questionId,
-            languageCode = "fr",
-            questionText = "Qui a été le premier premier ministre du Canada?"
-        )
-
-        insertAnswer(
-            id = 10011L,
-            questionId = questionId,
-            isCorrect = true,
-            english = "Sir John A. Macdonald",
-            french = "Sir John A. Macdonald"
-        )
-
-        insertAnswer(
-            id = 10012L,
-            questionId = questionId,
-            isCorrect = false,
-            english = "Sir Wilfrid Laurier",
-            french = "Sir Wilfrid Laurier"
-        )
-
-        insertAnswer(
-            id = 10013L,
-            questionId = questionId,
-            isCorrect = false,
-            english = "Pierre Trudeau",
-            french = "Pierre Trudeau"
-        )
-
-        insertAnswer(
-            id = 10014L,
-            questionId = questionId,
-            isCorrect = false,
-            english = "Lester B. Pearson",
-            french = "Lester B. Pearson"
-        )
-    }
-
-    private fun insertAnswer(
-        id: Long,
-        questionId: Long,
-        isCorrect: Boolean,
-        english: String,
-        french: String
+    private fun insertQuestion(
+        question: PracticeSeedQuestion
     ) {
 
-        queries.insertAnswer(
-            id = id,
-            questionId = questionId,
-            isCorrect = if (isCorrect) 1L else 0L
+        queries.insertQuestion(
+            id = question.id,
+            topicId = question.topicId
         )
 
-        queries.insertAnswerText(
-            answerId = id,
-            languageCode = "en",
-            answerText = english
-        )
+        question.question.forEach { (languageCode, text) ->
 
-        queries.insertAnswerText(
-            answerId = id,
-            languageCode = "fr",
-            answerText = french
-        )
+            queries.insertQuestionText(
+                questionId = question.id,
+                languageCode = languageCode,
+                questionText = text
+            )
+        }
+
+        question.answers.forEach { answer ->
+
+            queries.insertAnswer(
+                id = answer.id,
+                questionId = question.id,
+                isCorrect = if (answer.isCorrect) 1L else 0L
+            )
+
+            answer.text.forEach { (languageCode, text) ->
+
+                queries.insertAnswerText(
+                    answerId = answer.id,
+                    languageCode = languageCode,
+                    answerText = text
+                )
+            }
+        }
     }
 }

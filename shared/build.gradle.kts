@@ -7,6 +7,7 @@ plugins {
     alias(libs.plugins.composeCompiler)
 
     alias(libs.plugins.sqldelight)
+    alias(libs.plugins.kotlinSerialization)
 }
 
 kotlin {
@@ -65,6 +66,7 @@ kotlin {
             implementation(libs.compose.materialIconsExtended)
 
             implementation(libs.sqldelight.coroutines)
+            implementation(libs.kotlinx.serialization.json)
         }
 
         iosMain.dependencies {

@@ -20,14 +20,12 @@ import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -39,6 +37,7 @@ import mapleready.shared.generated.resources.Res
 import mapleready.shared.generated.resources.practice_back
 import mapleready.shared.generated.resources.practice_check_answer
 import mapleready.shared.generated.resources.practice_correct
+import mapleready.shared.generated.resources.practice_finish
 import mapleready.shared.generated.resources.practice_history
 import mapleready.shared.generated.resources.practice_incorrect
 import mapleready.shared.generated.resources.practice_next_question
@@ -53,7 +52,8 @@ fun PracticeScreen(
     onAnswerClick: (Long) -> Unit,
     onCheckAnswerClick: () -> Unit,
     onNextQuestionClick: () -> Unit,
-    onBackClick: () -> Unit
+    onBackClick: () -> Unit,
+    onFinishClick: () -> Unit,
 ) {
 
     val question = state.currentQuestion
@@ -195,11 +195,21 @@ fun PracticeScreen(
 
             Button(
                 modifier = Modifier.fillMaxWidth(),
-                onClick = onNextQuestionClick
+                onClick = {
+                    if (state.isLastQuestion) {
+                        onFinishClick()
+                    } else {
+                        onNextQuestionClick()
+                    }
+                }
             ) {
                 Text(
                     text = stringResource(
-                        Res.string.practice_next_question
+                        if (state.isLastQuestion) {
+                            Res.string.practice_finish
+                        } else {
+                            Res.string.practice_next_question
+                        }
                     )
                 )
             }
@@ -229,10 +239,21 @@ private fun PracticeAnswerCard(
     onClick: () -> Unit
 ) {
 
+    val isCorrectAnswer =
+        isAnswerChecked && answer.isCorrect
+
+    val isWrongSelectedAnswer =
+        isAnswerChecked &&
+                isSelected &&
+                !answer.isCorrect
+
     val borderColor =
         when {
-            isAnswerChecked && answer.isCorrect ->
+            isCorrectAnswer ->
                 MaterialTheme.colorScheme.primary
+
+            isWrongSelectedAnswer ->
+                MaterialTheme.colorScheme.error
 
             isSelected ->
                 MaterialTheme.colorScheme.primary
@@ -243,8 +264,11 @@ private fun PracticeAnswerCard(
 
     val containerColor =
         when {
-            isAnswerChecked && answer.isCorrect ->
+            isCorrectAnswer ->
                 MaterialTheme.colorScheme.primaryContainer
+
+            isWrongSelectedAnswer ->
+                MaterialTheme.colorScheme.errorContainer
 
             isSelected ->
                 MaterialTheme.colorScheme.secondaryContainer
@@ -278,12 +302,12 @@ private fun PracticeAnswerCard(
         ) {
 
             Surface(
-                modifier = Modifier,
                 shape = CircleShape,
                 border = BorderStroke(
                     width = 1.dp,
                     color = borderColor
-                )
+                ),
+                color = containerColor
             ) {
 
                 Box(
@@ -291,22 +315,36 @@ private fun PracticeAnswerCard(
                     contentAlignment = Alignment.Center
                 ) {
 
-                    if (isAnswerChecked && answer.isCorrect) {
-                        Icon(
-                            imageVector = Icons.Default.Check,
-                            contentDescription = null
-                        )
+                    when {
+                        isCorrectAnswer -> {
+                            Icon(
+                                imageVector = Icons.Default.Check,
+                                contentDescription = null,
+                                tint = MaterialTheme.colorScheme.primary
+                            )
+                        }
+
+                        isWrongSelectedAnswer -> {
+                            Icon(
+                                imageVector = Icons.Default.Close,
+                                contentDescription = null,
+                                tint = MaterialTheme.colorScheme.error
+                            )
+                        }
                     }
                 }
             }
 
             Spacer(
-                modifier = Modifier.padding(horizontal = 8.dp)
+                modifier = Modifier.padding(
+                    horizontal = 8.dp
+                )
             )
 
             Text(
                 text = answer.text,
-                style = MaterialTheme.typography.bodyLarge
+                style = MaterialTheme.typography.bodyLarge,
+                modifier = Modifier.weight(1f)
             )
         }
     }

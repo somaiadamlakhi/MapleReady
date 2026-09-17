@@ -1,0 +1,39 @@
+[
+  {
+    "id": 1001,
+    "topicId": "HISTORY",
+    "question": {
+      "en": "Who was Canada's first Prime Minister?"
+    },
+    "answers": [
+      {
+        "id": 10011,
+        "isCorrect": true,
+        "text": {
+          "en": "Sir John A. Macdonald"
+        }
+      },
+      {
+        "id": 10012,
+        "isCorrect": false,
+        "text": {
+          "en": "Sir Wilfrid Laurier"
+        }
+      },
+      {
+        "id": 10013,
+        "isCorrect": false,
+        "text": {
+          "en": "Pierre Trudeau"
+        }
+      },
+      {
+        "id": 10014,
+        "isCorrect": false,
+        "text": {
+          "en": "Lester B. Pearson"
+        }
+      }
+    ]
+  }
+]

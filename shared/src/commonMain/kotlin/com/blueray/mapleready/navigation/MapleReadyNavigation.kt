@@ -124,6 +124,9 @@ fun MapleReadyNavigation(
                 onNextQuestionClick = {
                     practiceViewModel.nextQuestion()
                 },
+                onFinishClick = {
+                    destination = AppDestination.Home
+                },
                 onBackClick = {
                     destination = AppDestination.Home
                 }

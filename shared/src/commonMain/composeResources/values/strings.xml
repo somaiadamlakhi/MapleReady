@@ -63,4 +63,5 @@
     <string name="practice_incorrect">Not quite</string>
     <string name="practice_no_questions">No practice questions available.</string>
     <string name="practice_back">Back</string>
+    <string name="practice_finish">Finish Practice</string>
 </resources>

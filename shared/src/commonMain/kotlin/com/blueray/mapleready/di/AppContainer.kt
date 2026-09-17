@@ -15,11 +15,10 @@ class AppContainer(
     private val database =
         createDatabase(driverFactory)
 
-    init {
+    private val practiceDataSeeder =
         PracticeDataSeeder(
             database = database
-        ).seedIfNeeded()
-    }
+        )
 
     private val studyRepository: StudyRepository =
         StudyRepositoryImpl()
@@ -33,4 +32,8 @@ class AppContainer(
         studyRepository = studyRepository,
         practiceRepository = practiceRepository
     )
+
+    suspend fun initialize() {
+        practiceDataSeeder.seedIfNeeded()
+    }
 }
