@@ -120,7 +120,7 @@ private fun StudyTopicContent(
             Arrangement.spacedBy(16.dp)
     ) {
 
-        // Header
+        // Back button + topic title
         Row(
             modifier = Modifier.fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically
@@ -149,8 +149,7 @@ private fun StudyTopicContent(
             )
         }
 
-        // Only show section information
-        // when the topic actually has sections.
+        // Show the section UI only when sections exist
         if (hasSections) {
 
             Text(
@@ -246,7 +245,6 @@ private fun StudyTopicContent(
                         modifier =
                             Modifier.weight(1f)
                     ) {
-
                         Text(
                             text = stringResource(
                                 Res.string.previous_section
@@ -271,11 +269,9 @@ private fun StudyTopicContent(
                     colors =
                         ButtonDefaults.buttonColors(
                             containerColor =
-                                MaterialTheme.colorScheme
-                                    .primary
+                                MaterialTheme.colorScheme.primary
                         )
                 ) {
-
                     Text(
                         text = stringResource(
                             if (isLastSection) {
