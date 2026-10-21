@@ -6,7 +6,9 @@ data class PracticeUiState(
     val questions: List<PracticeQuestion> = emptyList(),
     val currentQuestionIndex: Int = 0,
     val selectedAnswerId: Long? = null,
-    val isAnswerChecked: Boolean = false
+    val isAnswerChecked: Boolean = false,
+    val correctAnswersCount: Int = 0,
+    val isCompleted: Boolean = false
 ) {
 
     val currentQuestion: PracticeQuestion?
@@ -29,4 +31,20 @@ data class PracticeUiState(
                 .firstOrNull { it.id == selectedAnswerId }
                 ?.isCorrect == true
         }
+
+    val percentageScore: Int
+        get() = if (totalQuestions == 0) 0 else ((correctAnswersCount.toFloat() / totalQuestions.toFloat()) * 100).toInt()
+
+    val performanceGrade: PracticePerformanceGrade
+        get() = when {
+            percentageScore >= 80 -> PracticePerformanceGrade.EXCELLENT
+            percentageScore >= 60 -> PracticePerformanceGrade.GOOD
+            else -> PracticePerformanceGrade.NEEDS_PRACTICE
+        }
+}
+
+enum class PracticePerformanceGrade {
+    EXCELLENT,
+    GOOD,
+    NEEDS_PRACTICE
 }

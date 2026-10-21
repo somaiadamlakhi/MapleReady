@@ -1,6 +1,7 @@
 package com.blueray.mapleready.presentation.practice
 
 import androidx.lifecycle.ViewModel
+import com.blueray.mapleready.domain.language.AppLanguage
 import com.blueray.mapleready.domain.practice.PracticeRepository
 import com.blueray.mapleready.domain.study.model.StudyTopicId
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -19,14 +20,35 @@ class PracticeViewModel(
         _uiState.asStateFlow()
 
     fun loadQuestions(
-        topicId: StudyTopicId
+        topicId: StudyTopicId? = null,
+        language: AppLanguage = AppLanguage.ENGLISH,
+        limit: Int = 20
     ) {
-        val questions = repository.getQuestionsByTopic(
-            topicId = topicId
-        )
+        val allQuestions = if (topicId != null) {
+            repository.getQuestionsByTopic(
+                topicId = topicId,
+                language = language
+            )
+        } else {
+            repository.getQuestions(
+                language = language
+            )
+        }
+
+        val selectedQuestions = allQuestions
+            .shuffled()
+            .take(limit)
+            .map { question ->
+                question.copy(
+                    answers = question.answers.shuffled()
+                )
+            }
 
         _uiState.value = PracticeUiState(
-            questions = questions
+            questions = selectedQuestions,
+            currentQuestionIndex = 0,
+            selectedAnswerId = null,
+            isAnswerChecked = false
         )
     }
 
@@ -43,12 +65,16 @@ class PracticeViewModel(
     }
 
     fun checkAnswer() {
-        if (_uiState.value.selectedAnswerId == null) {
+        val state = _uiState.value
+        if (state.selectedAnswerId == null || state.isAnswerChecked) {
             return
         }
 
-        _uiState.value = _uiState.value.copy(
-            isAnswerChecked = true
+        val isCorrect = state.selectedAnswerIsCorrect
+
+        _uiState.value = state.copy(
+            isAnswerChecked = true,
+            correctAnswersCount = if (isCorrect) state.correctAnswersCount + 1 else state.correctAnswersCount
         )
     }
 
@@ -56,6 +82,9 @@ class PracticeViewModel(
         val state = _uiState.value
 
         if (state.isLastQuestion) {
+            _uiState.value = state.copy(
+                isCompleted = true
+            )
             return
         }
 
@@ -63,6 +92,12 @@ class PracticeViewModel(
             currentQuestionIndex = state.currentQuestionIndex + 1,
             selectedAnswerId = null,
             isAnswerChecked = false
+        )
+    }
+
+    fun finishPractice() {
+        _uiState.value = _uiState.value.copy(
+            isCompleted = true
         )
     }
 }

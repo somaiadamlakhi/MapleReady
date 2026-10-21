@@ -34,11 +34,159 @@
     <string name="section_progress">Section %1$d of %2$d</string>
     <string name="next_section">Next Section</string>
 
-    <string name="topic_history_section_1">Early Canada</string>
-    <string name="topic_history_content_1">Canada's history begins with Indigenous peoples who lived across the land long before European settlers arrived.</string>
+    <string name="topic_history_section_1">First Nations, Inuit &amp; Métis</string>
+    <string name="topic_history_content_1">Canada\'s history begins with Indigenous peoples who lived on this land for thousands of years. The three distinct groups recognized today are First Nations, Inuit, and Métis, each with unique cultures, languages, and traditions.</string>
 
-    <string name="topic_history_section_2">European Settlement</string>
-    <string name="topic_history_content_2">European exploration and settlement changed Canada over several centuries and shaped the country that exists today.</string>
+    <string name="topic_history_section_2">Cartier &amp; Champlain</string>
+    <string name="topic_history_content_2">French explorer Jacques Cartier made three voyages across the Atlantic in the 1500s, claiming land for France. In 1608, Samuel de Champlain established the first permanent European settlement at Quebec City.</string>
+
+    <string name="topic_history_section_3">New France &amp; Fur Trade</string>
+    <string name="topic_history_content_3">The economy in New France was driven by the fur trade, fostered by French traders known as coureurs des bois and voyageurs in close partnership with Indigenous allies.</string>
+
+    <string name="topic_history_section_4">The Quebec Act of 1774</string>
+    <string name="topic_history_content_4">The Quebec Act allowed French Canadians religious freedom to practice Catholicism, restored French civil law, and laid early constitutional foundations for Canadian accommodation and diversity.</string>
+
+    <string name="topic_history_section_5">The War of 1812</string>
+    <string name="topic_history_content_5">Canadian militia, British soldiers, and Indigenous warriors joined forces to defeat American invasions between 1812 and 1814, fostering national pride and protecting Canadian independence.</string>
+
+    <string name="topic_history_section_6">Confederation (1867)</string>
+    <string name="topic_history_content_6">On July 1, 1867, the British North America Act created the Dominion of Canada. Sir John A. Macdonald became Canada\'s first Prime Minister, uniting Ontario, Quebec, Nova Scotia, and New Brunswick.</string>
+
+    <string name="topic_history_section_7">Western Railway &amp; CPR</string>
+    <string name="topic_history_content_7">The completion of the Canadian Pacific Railway in 1885 fulfilled a national promise to connect British Columbia to eastern Canada, opening settlement across the Prairies.</string>
+
+    <string name="topic_history_section_8">WWI &amp; Vimy Ridge</string>
+    <string name="topic_history_content_8">Over 600,000 Canadians served in World War I. The Canadian Corps\' victory at the Battle of Vimy Ridge in April 1917 became a defining milestone of Canadian unity and international sacrifice.</string>
+
+    <string name="topic_history_section_9">WWII &amp; Juno Beach</string>
+    <string name="topic_history_content_9">In World War II, over one million Canadians served. On D-Day, June 6, 1944, the 3rd Canadian Infantry Division successfully captured Juno Beach in Normandy.</string>
+
+    <string name="topic_history_section_10">Modern Constitution (1982)</string>
+    <string name="topic_history_content_10">In 1982, Prime Minister Pierre Trudeau patriated the Constitution, adding the Canadian Charter of Rights and Freedoms to permanently entrench democratic rights and human dignity.</string>
+
+    <!-- Rights & Responsibilities -->
+    <string name="topic_rights_section_1">The Canadian Charter</string>
+    <string name="topic_rights_content_1">The Canadian Charter of Rights and Freedoms forms part of Canada\'s Constitution, protecting fundamental human rights and freedoms for everyone residing in Canada.</string>
+
+    <string name="topic_rights_section_2">Fundamental Freedoms</string>
+    <string name="topic_rights_content_2">Canadians enjoy freedom of conscience and religion, freedom of thought and expression, freedom of peaceful assembly, and freedom of association.</string>
+
+    <string name="topic_rights_section_3">Democratic Rights</string>
+    <string name="topic_rights_content_3">Every Canadian citizen aged 18 or older has the constitutional right to vote in federal, provincial, and territorial elections and to run for public office.</string>
+
+    <string name="topic_rights_section_4">Mobility Rights</string>
+    <string name="topic_rights_content_4">Canadian citizens and permanent residents have the right to move to and take up residence in any province or territory, and to seek employment anywhere in Canada.</string>
+
+    <string name="topic_rights_section_5">Legal Rights</string>
+    <string name="topic_rights_content_5">Everyone has the right to life, liberty, and security of person, protection against unreasonable search, and habeas corpus ensuring fair and prompt legal proceedings.</string>
+
+    <string name="topic_rights_section_6">Equality Rights</string>
+    <string name="topic_rights_content_6">All individuals are equal before and under the law without discrimination based on race, national origin, religion, sex, age, or disability. Men and women enjoy equal legal rights.</string>
+
+    <string name="topic_rights_section_7">Official Languages</string>
+    <string name="topic_rights_content_7">English and French are the official languages of Canada, ensuring Canadians can receive federal government services in either official language across the country.</string>
+
+    <string name="topic_rights_section_8">Duty to Obey Laws</string>
+    <string name="topic_rights_content_8">An essential responsibility of Canadian citizenship is respecting Canada\'s laws. No individual, government official, or police officer is above the law.</string>
+
+    <string name="topic_rights_section_9">Jury Duty &amp; Voting</string>
+    <string name="topic_rights_content_9">Serving on a jury when called is a vital civic duty that ensures fair trials. Voting in elections keeps Canadian democracy strong and representative.</string>
+
+    <string name="topic_rights_section_10">Protecting Environment &amp; Heritage</string>
+    <string name="topic_rights_content_10">Citizens contribute to Canada by helping others in the community, volunteering, and protecting Canada\'s natural environment and cultural heritage for future generations.</string>
+
+    <!-- Government -->
+    <string name="topic_government_section_1">Constitutional Monarchy</string>
+    <string name="topic_government_content_1">Canada is a parliamentary democracy and constitutional monarchy. Our system combines elected representatives with the historical stability of the Crown.</string>
+
+    <string name="topic_government_section_2">The Sovereign &amp; Governor General</string>
+    <string name="topic_government_content_2">His Majesty King Charles III is Canada\'s Sovereign and Head of State. The Governor General represents the Sovereign at the federal level across Canada.</string>
+
+    <string name="topic_government_section_3">The Prime Minister</string>
+    <string name="topic_government_content_3">The Prime Minister is the head of government in Canada, directing the executive branch and leading the political party with the most seats in the House of Commons.</string>
+
+    <string name="topic_government_section_4">The Cabinet</string>
+    <string name="topic_government_content_4">Cabinet ministers are chosen by the Prime Minister to oversee federal government departments such as Finance, Health, Defense, and Foreign Affairs.</string>
+
+    <string name="topic_government_section_5">House of Commons</string>
+    <string name="topic_government_content_5">The House of Commons is the green chamber of Parliament, made up of Members of Parliament (MPs) directly elected by citizens in 338 electoral districts.</string>
+
+    <string name="topic_government_section_6">The Senate</string>
+    <string name="topic_government_content_6">The Senate is the red chamber of Parliament. Senators are appointed on the Prime Minister\'s recommendation to review bills and represent regional interests.</string>
+
+    <string name="topic_government_section_7">Three Branches of Government</string>
+    <string name="topic_government_content_7">Government is divided into executive (Prime Minister &amp; Cabinet), legislative (Parliament: House &amp; Senate), and judicial (independent courts) branches.</string>
+
+    <string name="topic_government_section_8">Three Levels of Government</string>
+    <string name="topic_government_content_8">Federal handles national defense and foreign policy; provincial manages health care and education; municipal handles local services like snow removal and fire protection.</string>
+
+    <string name="topic_government_section_9">How Laws Are Made</string>
+    <string name="topic_government_content_9">A proposed law (Bill) must pass three readings in both the House of Commons and Senate, then receive Royal Assent from the Governor General to become law.</string>
+
+    <string name="topic_government_section_10">Supreme Court of Canada</string>
+    <string name="topic_government_content_10">The Supreme Court of Canada in Ottawa is the highest court in the land, consisting of nine judges led by the Chief Justice, safeguarding constitutional law.</string>
+
+    <!-- Elections -->
+    <string name="topic_elections_section_1">Federal Election Schedule</string>
+    <string name="topic_elections_content_1">Federal general elections are held at least once every four years on fixed dates, managed independently and non-partisantly by Elections Canada.</string>
+
+    <string name="topic_elections_section_2">338 Electoral Districts</string>
+    <string name="topic_elections_content_2">Canada is divided into 338 electoral districts or ridings. Citizens in each riding elect one Member of Parliament (MP) to represent them in Ottawa.</string>
+
+    <string name="topic_elections_section_3">Voter Qualifications</string>
+    <string name="topic_elections_content_3">To vote in a federal election, you must be a Canadian citizen, at least 18 years old on election day, and registered on the National Register of Electors.</string>
+
+    <string name="topic_elections_section_4">The Secret Ballot</string>
+    <string name="topic_elections_content_4">Voting in Canada is conducted by secret ballot. No one can see or force you to reveal how or for whom you cast your vote.</string>
+
+    <string name="topic_elections_section_5">Voting Process &amp; ID</string>
+    <string name="topic_elections_content_5">Voters receive a Voter Information Card detailing their polling station. Voters present valid identification proving identity and address before casting a ballot.</string>
+
+    <string name="topic_elections_section_6">Majority vs Minority Government</string>
+    <string name="topic_elections_content_6">The party winning the most seats forms government. If they hold over 170 seats, it is a majority government; under 170 seats is a minority government.</string>
+
+    <string name="topic_elections_section_7">Official Opposition</string>
+    <string name="topic_elections_content_7">The political party with the second-largest number of seats in the House of Commons becomes the Official Opposition, questioning and scrutinizing government policy.</string>
+
+    <string name="topic_elections_section_8">Political Parties</string>
+    <string name="topic_elections_content_8">Canadians can choose from several national political parties representing diverse political philosophies, or run as independent candidates.</string>
+
+    <string name="topic_elections_section_9">Question Period</string>
+    <string name="topic_elections_content_9">Daily during parliamentary sittings, opposition MPs ask Cabinet ministers direct questions regarding government actions and public policies.</string>
+
+    <string name="topic_elections_section_10">History of Voting Rights</string>
+    <string name="topic_elections_content_10">Voting rights expanded over time: women won federal voting rights in 1918 led by suffragettes like Nellie McClung, and First Nations gained full voting rights in 1960.</string>
+
+    <!-- Geography -->
+    <string name="topic_geography_section_1">The 5 Geographic Regions</string>
+    <string name="topic_geography_content_1">Canada spans five distinct geographic regions: Atlantic Provinces, Central Canada, Prairie Provinces, West Coast, and Northern Territories.</string>
+
+    <string name="topic_geography_section_2">National Capital &amp; Provinces</string>
+    <string name="topic_geography_content_2">Ottawa is the capital city of Canada. Canada consists of 10 provinces and 3 territories, stretching from the Atlantic to the Pacific and north to the Arctic Ocean.</string>
+
+    <string name="topic_geography_section_3">Atlantic Region</string>
+    <string name="topic_geography_content_3">Comprising Newfoundland and Labrador, Prince Edward Island, Nova Scotia, and New Brunswick. New Brunswick is Canada\'s only officially bilingual province.</string>
+
+    <string name="topic_geography_section_4">Central Canada</string>
+    <string name="topic_geography_content_4">Ontario and Quebec home over half of Canada\'s population. Ontario is Canada\'s industrial heartland, while Quebec is the center of French language and culture.</string>
+
+    <string name="topic_geography_section_5">Prairie Provinces</string>
+    <string name="topic_geography_content_5">Manitoba, Saskatchewan, and Alberta are famous for vast agricultural plains, wheat fields, energy resources, and scenic parklands.</string>
+
+    <string name="topic_geography_section_6">West Coast</string>
+    <string name="topic_geography_content_6">British Columbia is Canada\'s Pacific province, renowned for majestic Rocky Mountains, temperate rainforests, busy sea ports, and multicultural cities.</string>
+
+    <string name="topic_geography_section_7">Northern Territories</string>
+    <string name="topic_geography_content_7">Yukon, Northwest Territories, and Nunavut cover one-third of Canada\'s landmass. Nunavut ("Our Land") was established in 1999 as a homeland for Inuit.</string>
+
+    <string name="topic_geography_section_8">Three Ocean Borders</string>
+    <string name="topic_geography_content_8">Canada is bordered by three oceans: Atlantic (East), Pacific (West), and Arctic (North). The St. Lawrence Seaway connects the Great Lakes to the Atlantic.</string>
+
+    <string name="topic_geography_section_9">The Canadian Shield</string>
+    <string name="topic_geography_content_9">A massive geological horseshoe covering over half of Canada, rich in ancient rock, forests, lakes, and valuable minerals like nickel, gold, and copper.</string>
+
+    <string name="topic_geography_section_10">Population &amp; Diversity</string>
+    <string name="topic_geography_content_10">Most of Canada\'s 40 million people live in urban centers within 200 kilometers of the U.S. border, forming one of the most multicultural nations on earth.</string>
     <string name="previous_section">Previous Section</string>
     <string name="progress_screen_title">Progress</string>
     <string name="progress_screen_subtitle">Track your preparation and readiness</string>
@@ -64,4 +212,15 @@
     <string name="practice_no_questions">No practice questions available.</string>
     <string name="practice_back">Back</string>
     <string name="practice_finish">Finish Practice</string>
+    <string name="practice_results_title">Practice Results</string>
+    <string name="practice_results_score">%1$d / %2$d</string>
+    <string name="practice_results_accuracy">%1$d%% Accuracy</string>
+    <string name="practice_result_excellent_title">Congratulations! 🎉</string>
+    <string name="practice_result_excellent_desc">Excellent job! You demonstrated outstanding knowledge of Canadian topics.</string>
+    <string name="practice_result_good_title">Good Job! 👍</string>
+    <string name="practice_result_good_desc">You are on the right track! Practice a bit more to reach perfection.</string>
+    <string name="practice_result_needs_practice_title">Keep Practicing! 📚</string>
+    <string name="practice_result_needs_practice_desc">Don\'t give up! Practice makes perfect. Review the topics and try again!</string>
+    <string name="practice_quit">Quit Practice</string>
+    <string name="practice_try_again">Try Another 20 Questions</string>
 </resources>

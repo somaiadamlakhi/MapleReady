@@ -8,7 +8,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import com.blueray.mapleready.di.ViewModelProvider
-import com.blueray.mapleready.domain.study.model.StudyTopicId
 import com.blueray.mapleready.presentation.components.BottomNavItem
 import com.blueray.mapleready.presentation.home.HomeScreen
 import com.blueray.mapleready.presentation.practice.PracticeScreen
@@ -106,9 +105,7 @@ fun MapleReadyNavigation(
         AppDestination.Practice -> {
 
             LaunchedEffect(Unit) {
-                practiceViewModel.loadQuestions(
-                    topicId = StudyTopicId.HISTORY
-                )
+                practiceViewModel.loadQuestions()
             }
 
             val state by practiceViewModel.uiState.collectAsState()
@@ -123,6 +120,9 @@ fun MapleReadyNavigation(
                 },
                 onNextQuestionClick = {
                     practiceViewModel.nextQuestion()
+                },
+                onTryAgainClick = {
+                    practiceViewModel.loadQuestions()
                 },
                 onFinishClick = {
                     destination = AppDestination.Home

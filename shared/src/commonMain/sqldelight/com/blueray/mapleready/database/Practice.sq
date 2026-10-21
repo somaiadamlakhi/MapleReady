@@ -143,3 +143,11 @@ DELETE FROM PracticeQuestionText;
 
 deleteAllQuestions:
 DELETE FROM PracticeQuestion;
+
+
+
+
+
+
+
+
