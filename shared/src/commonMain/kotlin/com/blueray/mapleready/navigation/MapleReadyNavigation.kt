@@ -8,6 +8,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import com.blueray.mapleready.di.ViewModelProvider
+import com.blueray.mapleready.domain.language.AppLanguage
 import com.blueray.mapleready.presentation.components.BottomNavItem
 import com.blueray.mapleready.presentation.home.HomeScreen
 import com.blueray.mapleready.presentation.mocktest.MockTestScreen
@@ -18,7 +19,9 @@ import com.blueray.mapleready.presentation.study.topic.StudyTopicScreen
 
 @Composable
 fun MapleReadyNavigation(
-    viewModelProvider: ViewModelProvider
+    viewModelProvider: ViewModelProvider,
+    currentLanguage: AppLanguage = AppLanguage.ENGLISH,
+    onLanguageChangeRequested: (AppLanguage) -> Unit = {}
 ) {
 
     var destination by remember {
@@ -59,6 +62,10 @@ fun MapleReadyNavigation(
 
             HomeScreen(
                 state = state,
+                selectedLanguage = currentLanguage,
+                onLanguageChange = { newLanguage ->
+                    onLanguageChangeRequested(newLanguage)
+                },
                 onStudyClick = {
                     destination = AppDestination.Study
                 },
@@ -109,8 +116,10 @@ fun MapleReadyNavigation(
 
         AppDestination.Practice -> {
 
-            LaunchedEffect(Unit) {
-                practiceViewModel.loadQuestions()
+            LaunchedEffect(currentLanguage) {
+                practiceViewModel.loadQuestions(
+                    language = currentLanguage
+                )
             }
 
             val state by practiceViewModel.uiState.collectAsState()
@@ -127,7 +136,9 @@ fun MapleReadyNavigation(
                     practiceViewModel.nextQuestion()
                 },
                 onTryAgainClick = {
-                    practiceViewModel.loadQuestions()
+                    practiceViewModel.loadQuestions(
+                        language = currentLanguage
+                    )
                 },
                 onFinishClick = {
                     destination = AppDestination.Home
@@ -145,7 +156,9 @@ fun MapleReadyNavigation(
             MockTestScreen(
                 state = state,
                 onStartTestClick = {
-                    mockTestViewModel.startTest()
+                    mockTestViewModel.startTest(
+                        language = currentLanguage
+                    )
                 },
                 onAnswerClick = { answerId ->
                     mockTestViewModel.selectAnswer(answerId)
@@ -172,7 +185,9 @@ fun MapleReadyNavigation(
                     mockTestViewModel.confirmSubmitTest()
                 },
                 onRetakeClick = {
-                    mockTestViewModel.startTest()
+                    mockTestViewModel.startTest(
+                        language = currentLanguage
+                    )
                 },
                 onBackClick = {
                     mockTestViewModel.resetTest()

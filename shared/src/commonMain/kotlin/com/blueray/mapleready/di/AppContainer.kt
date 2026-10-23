@@ -6,6 +6,7 @@ import com.blueray.mapleready.data.practice.PracticeRepositoryImpl
 import com.blueray.mapleready.data.study.StudyRepositoryImpl
 import com.blueray.mapleready.database.DatabaseDriverFactory
 import com.blueray.mapleready.database.createDatabase
+import com.blueray.mapleready.domain.language.AppLanguage
 import com.blueray.mapleready.domain.mocktest.MockTestRepository
 import com.blueray.mapleready.domain.practice.PracticeRepository
 import com.blueray.mapleready.domain.study.StudyRepository
@@ -43,5 +44,13 @@ class AppContainer(
 
     suspend fun initialize() {
         practiceDataSeeder.seedIfNeeded()
+    }
+
+    fun getSavedLanguage(): AppLanguage {
+        return practiceRepository.getSavedLanguage()
+    }
+
+    fun saveLanguage(language: AppLanguage) {
+        practiceRepository.saveLanguage(language)
     }
 }

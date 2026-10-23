@@ -397,4 +397,10 @@
     <string name="mock_test_review_title">Full Exam Review</string>
     <string name="mock_test_retake">Retake Mock Test</string>
     <string name="mock_test_exit">Back to Home</string>
+
+    <!-- LANGUAGE DIALOG -->
+    <string name="language_dialog_title">Change Language?</string>
+    <string name="language_dialog_msg">Changing the language requires restarting the application to apply the changes across all screens. Do you want to restart now?</string>
+    <string name="language_dialog_confirm">Restart App</string>
+    <string name="language_dialog_cancel">Cancel</string>
 </resources>

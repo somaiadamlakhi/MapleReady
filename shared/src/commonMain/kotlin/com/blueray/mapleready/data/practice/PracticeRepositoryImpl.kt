@@ -65,6 +65,20 @@ class PracticeRepositoryImpl(
             }
     }
 
+    override fun getSavedLanguage(): AppLanguage {
+        val code = queries.getMetadataValue("app_language")
+            .executeAsOneOrNull() ?: "en"
+
+        return if (code == "fr") AppLanguage.FRENCH else AppLanguage.ENGLISH
+    }
+
+    override fun saveLanguage(language: AppLanguage) {
+        queries.setMetadataValue(
+            key = "app_language",
+            value_ = language.code
+        )
+    }
+
     private fun getAnswers(
         questionId: Long,
         language: AppLanguage

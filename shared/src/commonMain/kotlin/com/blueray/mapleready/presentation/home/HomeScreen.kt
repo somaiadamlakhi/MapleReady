@@ -1,6 +1,7 @@
 package com.blueray.mapleready.presentation.home
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -14,17 +15,27 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Description
 import androidx.compose.material.icons.outlined.MenuBook
 import androidx.compose.material.icons.outlined.TrackChanges
+import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.blueray.mapleready.domain.language.AppLanguage
 import com.blueray.mapleready.presentation.components.BottomNavItem
 import com.blueray.mapleready.presentation.components.MapleReadyActionCard
 import com.blueray.mapleready.presentation.components.MapleReadyBottomBar
@@ -39,6 +50,10 @@ import mapleready.shared.generated.resources.Res
 import mapleready.shared.generated.resources.app_name
 import mapleready.shared.generated.resources.home_motivation
 import mapleready.shared.generated.resources.home_subtitle
+import mapleready.shared.generated.resources.language_dialog_cancel
+import mapleready.shared.generated.resources.language_dialog_confirm
+import mapleready.shared.generated.resources.language_dialog_msg
+import mapleready.shared.generated.resources.language_dialog_title
 import mapleready.shared.generated.resources.mock_test_description
 import mapleready.shared.generated.resources.mock_test_title
 import mapleready.shared.generated.resources.practice_description
@@ -52,11 +67,15 @@ import org.jetbrains.compose.resources.stringResource
 @Composable
 fun HomeScreen(
     state: HomeUiState = HomeUiState(),
+    selectedLanguage: AppLanguage = AppLanguage.ENGLISH,
+    onLanguageChange: (AppLanguage) -> Unit = {},
     onStudyClick: () -> Unit = {},
     onPracticeClick: () -> Unit = {},
     onMockTestClick: () -> Unit = {},
     onBottomNavItemSelected: (BottomNavItem) -> Unit = {}
 ) {
+    var pendingLanguage by remember { mutableStateOf<AppLanguage?>(null) }
+
     Scaffold(
         bottomBar = {
             MapleReadyBottomBar(
@@ -68,17 +87,53 @@ fun HomeScreen(
 
         HomeContent(
             state = state,
+            selectedLanguage = selectedLanguage,
+            onLanguageChangeRequested = { targetLanguage ->
+                if (targetLanguage != selectedLanguage) {
+                    pendingLanguage = targetLanguage
+                }
+            },
             onStudyClick = onStudyClick,
             onPracticeClick = onPracticeClick,
             onMockTestClick = onMockTestClick,
             modifier = Modifier.padding(innerPadding)
         )
+
+        pendingLanguage?.let { targetLang ->
+            AlertDialog(
+                onDismissRequest = { pendingLanguage = null },
+                title = {
+                    Text(text = stringResource(Res.string.language_dialog_title))
+                },
+                text = {
+                    Text(text = stringResource(Res.string.language_dialog_msg))
+                },
+                confirmButton = {
+                    Button(
+                        onClick = {
+                            val target = targetLang
+                            pendingLanguage = null
+                            onLanguageChange(target)
+                        }
+                    ) {
+                        Text(text = stringResource(Res.string.language_dialog_confirm))
+                    }
+                },
+                dismissButton = {
+                    TextButton(onClick = { pendingLanguage = null }) {
+                        Text(text = stringResource(Res.string.language_dialog_cancel))
+                    }
+                }
+            )
+        }
     }
 }
 
 @Composable
 private fun HomeContent(
     state: HomeUiState,
+    selectedLanguage: AppLanguage,
+    onLanguageChangeRequested: (AppLanguage) -> Unit,
     onStudyClick: () -> Unit,
     onPracticeClick: () -> Unit,
     onMockTestClick: () -> Unit,
@@ -96,7 +151,10 @@ private fun HomeContent(
             modifier = Modifier.height(8.dp)
         )
 
-        HomeHeader()
+        HomeHeader(
+            selectedLanguage = selectedLanguage,
+            onLanguageChangeRequested = onLanguageChangeRequested
+        )
 
         Spacer(
             modifier = Modifier.height(8.dp)
@@ -142,7 +200,10 @@ private fun HomeContent(
 }
 
 @Composable
-private fun HomeHeader() {
+private fun HomeHeader(
+    selectedLanguage: AppLanguage,
+    onLanguageChangeRequested: (AppLanguage) -> Unit
+) {
     Column(
         modifier = Modifier.fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally
@@ -168,6 +229,61 @@ private fun HomeHeader() {
             color = MaterialTheme.colorScheme.onBackground.copy(
                 alpha = 0.7f
             )
+        )
+
+        LanguageSelectorToggle(
+            selectedLanguage = selectedLanguage,
+            onLanguageChangeRequested = onLanguageChangeRequested
+        )
+    }
+}
+
+@Composable
+private fun LanguageSelectorToggle(
+    selectedLanguage: AppLanguage,
+    onLanguageChangeRequested: (AppLanguage) -> Unit
+) {
+    Surface(
+        shape = RoundedCornerShape(20.dp),
+        color = MaterialTheme.colorScheme.surfaceVariant,
+        modifier = Modifier.padding(top = 10.dp)
+    ) {
+        Row(
+            modifier = Modifier.padding(4.dp),
+            horizontalArrangement = Arrangement.spacedBy(4.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            LanguageChip(
+                label = "🇨🇦 EN",
+                isSelected = selectedLanguage == AppLanguage.ENGLISH,
+                onClick = { onLanguageChangeRequested(AppLanguage.ENGLISH) }
+            )
+
+            LanguageChip(
+                label = "🇫🇷 FR",
+                isSelected = selectedLanguage == AppLanguage.FRENCH,
+                onClick = { onLanguageChangeRequested(AppLanguage.FRENCH) }
+            )
+        }
+    }
+}
+
+@Composable
+private fun LanguageChip(
+    label: String,
+    isSelected: Boolean,
+    onClick: () -> Unit
+) {
+    Surface(
+        modifier = Modifier.clickable(onClick = onClick),
+        shape = RoundedCornerShape(16.dp),
+        color = if (isSelected) MaterialTheme.colorScheme.primary else Color.Transparent
+    ) {
+        Text(
+            text = label,
+            modifier = Modifier.padding(horizontal = 14.dp, vertical = 6.dp),
+            style = MaterialTheme.typography.labelLarge,
+            color = if (isSelected) MaterialTheme.colorScheme.onPrimary else MaterialTheme.colorScheme.onSurfaceVariant
         )
     }
 }
@@ -197,7 +313,6 @@ private fun ReadinessSection(
             Text(
                 text = stringResource(
                     Res.string.readiness_percentage,
-                    (readiness * 100).toInt(),
                     percentage
                 ),
                 style = MaterialTheme.typography.titleMedium,
@@ -246,6 +361,8 @@ private fun HomeScreenPreview() {
             state = HomeUiState(
                 readiness = 0.72f
             ),
+            selectedLanguage = AppLanguage.ENGLISH,
+            onLanguageChange = {},
             onStudyClick = {},
             onPracticeClick = {},
             onMockTestClick = {},

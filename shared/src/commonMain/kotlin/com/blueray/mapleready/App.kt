@@ -13,12 +13,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import com.blueray.mapleready.database.DatabaseDriverFactory
 import com.blueray.mapleready.di.AppContainer
+import com.blueray.mapleready.domain.language.AppLanguage
 import com.blueray.mapleready.navigation.MapleReadyNavigation
 import com.blueray.mapleready.presentation.theme.MapleReadyTheme
 
 @Composable
 fun App(
-    driverFactory: DatabaseDriverFactory
+    driverFactory: DatabaseDriverFactory,
+    onRestartApp: () -> Unit = {}
 ) {
 
     val appContainer = remember {
@@ -31,8 +33,14 @@ fun App(
         mutableStateOf(false)
     }
 
+    var currentLanguage by remember {
+        mutableStateOf(AppLanguage.ENGLISH)
+    }
+
     LaunchedEffect(appContainer) {
         appContainer.initialize()
+        val savedLang = appContainer.getSavedLanguage()
+        currentLanguage = savedLang
         isInitialized = true
     }
 
@@ -41,7 +49,12 @@ fun App(
         if (isInitialized) {
 
             MapleReadyNavigation(
-                viewModelProvider = appContainer.viewModelProvider
+                viewModelProvider = appContainer.viewModelProvider,
+                currentLanguage = currentLanguage,
+                onLanguageChangeRequested = { targetLanguage ->
+                    appContainer.saveLanguage(targetLanguage)
+                    onRestartApp()
+                }
             )
 
         } else {

@@ -1,0 +1,406 @@
+<resources>
+    <string name="app_name">MapleReady</string>
+    <string name="home_subtitle">Votre chemin vers la citoyenneté canadienne</string>
+    <string name="study_title">Étudier</string>
+    <string name="study_description">Apprenez avec Découvrir le Canada</string>
+    <string name="practice_title">S\'entraîner</string>
+    <string name="practice_description">Questions d\'entraînement par sujet</string>
+    <string name="mock_test_title">Test pratique</string>
+    <string name="mock_test_description">20 questions • 45 minutes</string>
+    <string name="readiness_title">Votre niveau de préparation</string>
+    <string name="readiness_percentage">%1$d%%</string>
+    <string name="home_motivation">De petits pas mènent aux grandes réussites.</string>
+    <string name="nav_home">Accueil</string>
+    <string name="nav_study">Étudier</string>
+    <string name="nav_progress">Progrès</string>
+    <string name="study_screen_title">Étudier</string>
+    <string name="study_screen_subtitle">Apprenez le guide Découvrir le Canada chapitre par chapitre</string>
+
+    <string name="topic_history_title">Histoire du Canada</string>
+    <string name="topic_history_description">Découvrez les personnalités et événements qui ont façonné le Canada</string>
+
+    <string name="topic_rights_title">Droits et responsabilités</string>
+    <string name="topic_rights_description">Découvrez vos droits et devoirs en tant que citoyen canadien</string>
+
+    <string name="topic_government_title">Gouvernement</string>
+    <string name="topic_government_description">Comprenez le système politique et gouvernemental canadien</string>
+
+    <string name="topic_elections_title">Élections</string>
+    <string name="topic_elections_description">Découvrez le fonctionnement du système électoral et du vote</string>
+
+    <string name="topic_geography_title">Géographie</string>
+    <string name="topic_geography_description">Explorez les régions, provinces et territoires du Canada</string>
+    <string name="section_progress">Section %1$d sur %2$d</string>
+    <string name="next_section">Section suivante</string>
+
+    <!-- HISTORY (Sections 1-20 in French) -->
+    <string name="topic_history_section_1">Premières Nations, Inuits et Métis</string>
+    <string name="topic_history_content_1">L\'histoire du Canada commence avec les peuples autochtones qui habitaient cette terre depuis des millénaires. Les trois groupes distincts reconnus sont les Premières Nations, les Inuits et les Métis.</string>
+
+    <string name="topic_history_section_2">Cartier et Champlain</string>
+    <string name="topic_history_content_2">L\'explorateur français Jacques Cartier a effectué trois voyages au XVIe siècle. En 1608, Samuel de Champlain a fondé Québec, premier établissement européen permanent.</string>
+
+    <string name="topic_history_section_3">La Nouvelle-France et la traite des fourrures</string>
+    <string name="topic_history_content_3">L\'économie de la Nouvelle-France reposait sur le commerce des fourrures, animé par les coureurs des bois et voyageurs en alliance avec les peuples autochtones.</string>
+
+    <string name="topic_history_section_4">L\'Acte de Québec de 1774</string>
+    <string name="topic_history_content_4">L\'Acte de Québec a accordé aux Canadiens français la liberté religieuse catholique et rétabli le droit civil français, posant les bases du pluralisme canadien.</string>
+
+    <string name="topic_history_section_5">La guerre de 1812</string>
+    <string name="topic_history_content_5">La milice canadienne, les troupes britanniques et les alliés autochtones ont repoussé les invasions américaines entre 1812 et 1814, renforçant la fierté nationale.</string>
+
+    <string name="topic_history_section_6">La Confédération (1867)</string>
+    <string name="topic_history_content_6">Le 1er juillet 1867, l\'Acte de l\'Amérique du Nord britannique crée le Dominion du Canada. Sir John A. Macdonald devient le premier premier ministre.</string>
+
+    <string name="topic_history_section_7">Le chemin de fer du Canadien Pacifique</string>
+    <string name="topic_history_content_7">L\'achèvement du chemin de fer Canadien Pacifique en 1885 a relié la Colombie-Britannique à l\'Est et ouvert la colonisation des Prairies.</string>
+
+    <string name="topic_history_section_8">Première Guerre mondiale et crête de Vimy</string>
+    <string name="topic_history_content_8">Plus de 600 000 Canadiens ont servi lors de la Première Guerre mondiale. La victoire à Vimy en avril 1917 est devenue un symbole d\'unité nationale.</string>
+
+    <string name="topic_history_section_9">Seconde Guerre mondiale et Juno Beach</string>
+    <string name="topic_history_content_9">Plus d\'un million de Canadiens ont servi pendant la Seconde Guerre mondiale. Le 6 juin 1944 (Jour J), la 3e Division canadienne a capturé Juno Beach.</string>
+
+    <string name="topic_history_section_10">Rapatriement de la Constitution (1982)</string>
+    <string name="topic_history_content_10">En 1982, le premier ministre Pierre Trudeau a rapatrié la Constitution, enchâssant la Charte canadienne des droits et libertés.</string>
+
+    <string name="topic_history_section_11">La Proclamation royale de 1763</string>
+    <string name="topic_history_content_11">Émise par le roi George III, elle a établi le gouvernement britannique au Québec et reconnu officiellement les droits fonciers autochtones.</string>
+
+    <string name="topic_history_section_12">L\'arrivée des Loyalistes</string>
+    <string name="topic_history_content_12">Après la Révolution américaine, plus de 40 000 Loyalistes se sont réfugiés au Canada, menant à la création du Nouveau-Brunswick et du Haut-Canada.</string>
+
+    <string name="topic_history_section_13">Les Rébellions de 1837–1838</string>
+    <string name="topic_history_content_13">Des réformateurs ont réclamé un gouvernement démocratique. Le rapport de Lord Durham a recommandé l\'union des Canadas et un gouvernement responsable.</string>
+
+    <string name="topic_history_section_14">Louis Riel et les droits des Métis</string>
+    <string name="topic_history_content_14">Louis Riel a dirigé la résistance de la rivière Rouge (1869) et du Nord-Ouest (1885) pour défendre la terre et la culture métisses, créant le Manitoba.</string>
+
+    <string name="topic_history_section_15">La ruée vers l\'or du Klondike</string>
+    <string name="topic_history_content_15">La découverte d\'or au Yukon en 1896 a attiré des milliers de prospecteurs, menant à la création du territoire du Yukon en 1898.</string>
+
+    <string name="topic_history_section_16">Droit de vote des femmes et les Célèbres cinq</string>
+    <string name="topic_history_content_16">Les suffragettes menées par Nellie McClung ont obtenu le droit de vote des femmes en 1918. Les Célèbres cinq ont gagné l\'affaire « Personnes » en 1929.</string>
+
+    <string name="topic_history_section_17">La Grande Dépression</string>
+    <string name="topic_history_content_17">La crise économique des années 1930 a mené à la création de la Banque du Canada, de l\'assurance-chômage et des programmes sociaux fédéraux.</string>
+
+    <string name="topic_history_section_18">Lester B. Pearson et le maintien de la paix</string>
+    <string name="topic_history_content_18">Lester B. Pearson a remporté le prix Nobel de la paix 1957 pour les Casques bleus de l\'ONU. Il a aussi instauré le drapeau canadien unifolié en 1965.</string>
+
+    <string name="topic_history_section_19">Loi sur les langues officielles (1969)</string>
+    <string name="topic_history_content_19">Cette loi historique adoptée sous Pierre Trudeau a fait de l\'anglais et du français les langues officielles du gouvernement fédéral.</string>
+
+    <string name="topic_history_section_20">Vérité et Réconciliation</string>
+    <string name="topic_history_content_20">Le Canada reconnaît les torts du passé, notamment le système des pensionnats indiens, s\'engageant vers une réconciliation sincère avec les Autochtones.</string>
+
+    <!-- RIGHTS & RESPONSIBILITIES (Sections 1-20 in French) -->
+    <string name="topic_rights_section_1">La Charte canadienne</string>
+    <string name="topic_rights_content_1">La Charte canadienne des droits et libertés protège les droits fondamentaux et les libertés de toute personne résidant au Canada.</string>
+
+    <string name="topic_rights_section_2">Libertés fondamentales</string>
+    <string name="topic_rights_content_2">Les Canadiens bénéficient de la liberté de conscience, de religion, de pensée, d\'expression, de réunion pacifique et d\'association.</string>
+
+    <string name="topic_rights_section_3">Droits démocratiques</string>
+    <string name="topic_rights_content_3">Tout citoyen canadien âgé d\'au moins 18 ans a le droit constitutionnel de voter aux élections et de se porter candidat.</string>
+
+    <string name="topic_rights_section_4">Liberté de circulation</string>
+    <string name="topic_rights_content_4">Les citoyens et résidents permanents ont le droit de se déplacer, de résider et de travailler dans n\'importe quelle province ou territoire.</string>
+
+    <string name="topic_rights_section_5">Garanties juridiques</string>
+    <string name="topic_rights_content_5">Toute personne a droit à la vie, à la liberté, à la sécurité, à la protection contre les fouilles abusives et à l\'habeas corpus.</string>
+
+    <string name="topic_rights_section_6">Droits à l\'égalité</string>
+    <string name="topic_rights_content_6">Tous sont égaux devant la loi sans discrimination fondée sur la race, l\'origine, la religion, le sexe, l\'âge ou l\'incapacité.</string>
+
+    <string name="topic_rights_section_7">Langues officielles</string>
+    <string name="topic_rights_content_7">L\'anglais et le français sont les langues officielles du Canada, garantissant les services fédéraux dans les deux langues.</string>
+
+    <string name="topic_rights_section_8">Obéissance aux lois</string>
+    <string name="topic_rights_content_8">Une responsabilité essentielle de la citoyenneté est de respecter les lois. Personne n\'est au-dessus de la loi (Primauté du droit).</string>
+
+    <string name="topic_rights_section_9">Jury et devoir électoral</string>
+    <string name="topic_rights_content_9">Faire partie d\'un jury garantit des procès équitables. Voter aux élections maintient la démocratie canadienne forte et représentative.</string>
+
+    <string name="topic_rights_section_10">Protection de l\'environnement</string>
+    <string name="topic_rights_content_10">Les citoyens contribuent au Canada en aidant leur communauté, en faisant du bénévolat et en protégeant l\'environnement et le patrimoine.</string>
+
+    <string name="topic_rights_section_11">L\'héritage de la Grande Charte</string>
+    <string name="topic_rights_content_11">La Magna Carta britannique de 1215 a posé les bases de la liberté sous la loi, de l\'habeas corpus et de la protection contre l\'arbitraire.</string>
+
+    <string name="topic_rights_section_12">Droits issus de traités autochtones</string>
+    <string name="topic_rights_content_12">L\'article 35 de la Loi constitutionnelle de 1982 reconnaît et confirme les droits ancestraux ou issus de traités des peuples autochtones.</string>
+
+    <string name="topic_rights_section_13">Le mosaïque multiculturelle</string>
+    <string name="topic_rights_content_13">La politique canadienne reconnaît la diversité culturelle des citoyens comme un élément fondamental de l\'identité nationale.</string>
+
+    <string name="topic_rights_section_14">Égalité des sexes selon la loi</string>
+    <string name="topic_rights_content_14">Les hommes et les femmes ont des droits égaux. Les mariages forcés, la violence conjugale et la discrimination sont stritement illégaux.</string>
+
+    <string name="topic_rights_section_15">Bénévolat communautaire</string>
+    <string name="topic_rights_content_15">Donner du temps aux organismes de bienfaisance, écoles et groupes locaux est au cœur de la solidarité communautaire canadienne.</string>
+
+    <string name="topic_rights_section_16">Limites à la liberté d\'expression</string>
+    <string name="topic_rights_content_16">L\'expression est libre au Canada, mais les discours haineux, la diffamation et l\'incitation à la violence sont des infractions criminelles.</string>
+
+    <string name="topic_rights_section_17">Droit de propriété</string>
+    <string name="topic_rights_content_17">Les citoyens peuvent posséder des biens et créer des entreprises soutenus par un droit commercial impartial et sécurisé.</string>
+
+    <string name="topic_rights_section_18">Défense de la souveraineté</string>
+    <string name="topic_rights_content_18">Servir dans les Forces armées canadiennes ou la réserve est une façon honorée de défendre la sécurité du Canada et la paix.</string>
+
+    <string name="topic_rights_section_19">Accommodement religieux</string>
+    <string name="topic_rights_content_19">Les employeurs et institutions doivent accommoder les pratiques religieuses à moins de contrainte excessive ou d\'infraction à la loi.</string>
+
+    <string name="topic_rights_section_20">Le serment de citoyenneté</string>
+    <string name="topic_rights_content_20">Prêter allégeance au roi Charles III et respecter les lois canadiennes marque un engagement envers le Canada et ses citoyens.</string>
+
+    <!-- GOVERNMENT (Sections 1-20 in French) -->
+    <string name="topic_government_section_1">Monarchie constitutionnelle</string>
+    <string name="topic_government_content_1">Le Canada est une démocratie parlementaire et une monarchie constitutionnelle combinant des représentants élus et la stabilité de la Couronne.</string>
+
+    <string name="topic_government_section_2">Le Souverain et le gouverneur général</string>
+    <string name="topic_government_content_2">Le roi Charles III est le chef d\'État du Canada. Le gouverneur général représente le Souverain au niveau fédéral.</string>
+
+    <string name="topic_government_section_3">Le premier ministre</string>
+    <string name="topic_government_content_3">Le premier ministre est le chef du gouvernement canadien, dirigeant le pouvoir exécutif et le parti ayant le plus de députés à la Chambre.</string>
+
+    <string name="topic_government_section_4">Le Cabinet</string>
+    <string name="topic_government_content_4">Les ministres du Cabinet sont choisis par le premier ministre pour diriger les ministères fédéraux comme les Finances, la Santé et la Défense.</string>
+
+    <string name="topic_government_section_5">La Chambre des communes</string>
+    <string name="topic_government_content_5">La Chambre des communes est la chambre verte du Parlement, composée de 338 députés directement élus par les citoyens dans leurs circonscriptions.</string>
+
+    <string name="topic_government_section_6">Le Sénat</string>
+    <string name="topic_government_content_6">Le Sénat est la chambre rouge du Parlement. Les sénateurs sont nommés pour examiner les projets de loi et représenter les régions.</string>
+
+    <string name="topic_government_section_7">Trois pouvoirs du gouvernement</string>
+    <string name="topic_government_content_7">Le gouvernement se divise en pouvoir exécutif (premier ministre et Cabinet), législatif (Parlement) et judiciaire (tribunaux indépendants).</string>
+
+    <string name="topic_government_section_8">Trois niveaux de gouvernement</string>
+    <string name="topic_government_content_8">Le fédéral gère la défense et la diplomatie; le provincial gère la santé et l\'éducation; le municipal gère les services locaux comme le déneigement.</string>
+
+    <string name="topic_government_section_9">Processus législatif</string>
+    <string name="topic_government_content_9">Un projet de loi doit franchir trois lectures à la Chambre et au Sénat, puis recevoir la sanction royale pour devenir loi.</string>
+
+    <string name="topic_government_section_10">Cour suprême du Canada</string>
+    <string name="topic_government_content_10">La Cour suprême du Canada à Ottawa est la plus haute instance judiciaire du pays, composée de neuf juges dirigés par le juge en chef.</string>
+
+    <string name="topic_government_section_11">Lieutenants-gouverneurs</string>
+    <string name="topic_government_content_11">Représentants du Souverain dans chacune des dix provinces, nommés pour accorder la sanction royale provinciale.</string>
+
+    <string name="topic_government_section_12">Le premier ministre provincial</string>
+    <string name="topic_government_content_12">Chef du gouvernement d\'une province, dirigeant le conseil des ministres provincial et l\'administration publique.</string>
+
+    <string name="topic_government_section_13">Commissaires territoriaux</string>
+    <string name="topic_government_content_13">Représentants du gouvernement fédéral au Yukon, dans les T.N.-O. et au Nunavut remplissant des fonctions cérémonielles.</string>
+
+    <string name="topic_government_section_14">La fonction publique</string>
+    <string name="topic_government_content_14">Fonctionnaires professionnels impartiaux assurant les opérations quotidiennes de l\'administration gouvernementale.</string>
+
+    <string name="topic_government_section_15">Période des questions</string>
+    <string name="topic_government_content_15">Période quotidienne de 45 minutes où les députés de l\'opposition interrogent les ministres sur les décisions du gouvernement.</string>
+
+    <string name="topic_government_section_16">Le président de la Chambre</string>
+    <string name="topic_government_content_16">Un député élu par ses pairs pour faire respecter le règlement, maintenir l\'ordre et gérer les débats de façon neutre.</string>
+
+    <string name="topic_government_section_17">Modifications constitutionnelles</string>
+    <string name="topic_government_content_17">Modifier la Constitution nécessite l\'accord du Parlement et d\'au moins 7 provinces représentant 50 % de la population.</string>
+
+    <string name="topic_government_section_18">Paiements de péréquation</string>
+    <string name="topic_government_content_18">Fonds fédéraux redistribués aux provinces pour assurer des services publics comparables partout au pays.</string>
+
+    <string name="topic_government_section_19">La Colline du Parlement</string>
+    <string name="topic_government_content_19">Édifices néo-gothiques historiques à Ottawa comprenant la Tour de la Paix et les chambres du Parlement.</string>
+
+    <string name="topic_government_section_20">Solidarité ministérielle</string>
+    <string name="topic_government_content_20">Convention exigeant que tous les ministres soutiennent publiquement les décisions du gouvernement ou démissionnent.</string>
+
+    <!-- ELECTIONS (Sections 1-20 in French) -->
+    <string name="topic_elections_section_1">Calendrier électoral fédéral</string>
+    <string name="topic_elections_content_1">Les élections générales fédérales ont lieu au moins tous les quatre ans à date fixe, gérées de façon indépendante par Élections Canada.</string>
+
+    <string name="topic_elections_section_2">338 circonscriptions électorales</string>
+    <string name="topic_elections_content_2">Le Canada est divisé en 338 circonscriptions. Les électeurs de chaque comté élisent un député pour les représenter à Ottawa.</string>
+
+    <string name="topic_elections_section_3">Qualité d\'électeur</string>
+    <string name="topic_elections_content_3">Pour voter, il faut être citoyen canadien, avoir au moins 18 ans le jour du scrutin et être inscrit sur le registre électoral.</string>
+
+    <string name="topic_elections_section_4">Le vote secret</string>
+    <string name="topic_elections_content_4">Le vote se déroule au scrutin secret. Personne ne peut vous forcer à révéler pour qui vous avez voté.</string>
+
+    <string name="topic_elections_section_5">Procédure de vote et identification</string>
+    <string name="topic_elections_content_5">Les électeurs reçoivent une carte d\'information expliquant où voter et doivent présenter des pièces d\'identité valides.</string>
+
+    <string name="topic_elections_section_6">Gouvernement majoritaire ou minoritaire</string>
+    <string name="topic_elections_content_6">Le parti remportant le plus de sièges forme le gouvernement. Plus de 170 sièges donne une majorité; moins de 170 donne une minorité.</string>
+
+    <string name="topic_elections_section_7">L\'Opposition officielle</string>
+    <string name="topic_elections_content_7">Le parti détenant le deuxième plus grand nombre de sièges devient l\'Opposition officielle, contrôlant les politiques du gouvernement.</string>
+
+    <string name="topic_elections_section_8">Partis politiques</string>
+    <string name="topic_elections_content_8">Les Canadiens peuvent choisir parmi plusieurs partis politiques nationaux ou se présenter comme candidats indépendants.</string>
+
+    <string name="topic_elections_section_9">La période des questions</string>
+    <string name="topic_elections_content_9">Chaque jour de session, l\'opposition pose des questions directes aux ministres sur les affaires nationales.</string>
+
+    <string name="topic_elections_section_10">Évolution du droit de vote</string>
+    <string name="topic_elections_content_10">Le droit de vote s\'est élargi au fil du temps : femmes (1918), Canadiens d\'origine asiatique (1948) et Premières Nations (1960).</string>
+
+    <string name="topic_elections_section_11">Élections Canada</string>
+    <string name="topic_elections_content_11">Organisme indépendant et impartial chargé d\'organiser les élections fédérales et de faire respecter les lois électorales.</string>
+
+    <string name="topic_elections_section_12">Registre national des électeurs</string>
+    <string name="topic_elections_content_12">Base de données permanente des électeurs admissibles mise à jour continuellement par les déclarations de revenus et permis de conduire.</string>
+
+    <string name="topic_elections_section_13">Carte d\'information de l\'électeur</string>
+    <string name="topic_elections_content_13">Avis officiel envoyé par la poste indiquant le lieu de votre bureau de vote, les dates et les heures de scrutin.</string>
+
+    <string name="topic_elections_section_14">Bureaux de vote par anticipation</string>
+    <string name="topic_elections_content_14">Bureaux de vote ouverts plusieurs jours avant le jour officiel de l\'élection pour permettre de voter à l\'avance.</string>
+
+    <string name="topic_elections_section_15">Vote par bulletin spécial</string>
+    <string name="topic_elections_content_15">Option de vote par la poste ou dans les bureaux d\'Élections Canada pour les citoyens en déplacement ou à l\'étranger.</string>
+
+    <string name="topic_elections_section_16">Élections partielles</string>
+    <string name="topic_elections_content_16">Élections spéciales organisées entre deux élections générales lorsqu\'un siège de député devient vacant.</string>
+
+    <string name="topic_elections_section_17">Mise en candidature</string>
+    <string name="topic_elections_content_17">Tout électeur admissible peut se porter candidat en recueillant des signatures d\'électeurs locaux et en déposant sa candidature.</string>
+
+    <string name="topic_elections_section_18">Scrutin uninominal à un tour</string>
+    <string name="topic_elections_content_18">Système électoral canadien où le candidat obtenant le plus grand nombre de voix dans une circonscription remporte le siège.</string>
+
+    <string name="topic_elections_section_19">Dissolution du Parlement</string>
+    <string name="topic_elections_content_19">Le gouverneur général dissout officiellement le Parlement sur recommandation du premier ministre, déclenchant la campagne électorale.</string>
+
+    <string name="topic_elections_section_20">Élections municipales</string>
+    <string name="topic_elections_content_20">Élections locales organisées tous les 3 ou 4 ans pour élire les maires, conseillers municipaux et commissaires scolaires.</string>
+
+    <!-- GEOGRAPHY (Sections 1-20 in French) -->
+    <string name="topic_geography_section_1">Les 5 régions géographiques</string>
+    <string name="topic_geography_content_1">Le Canada comprend cinq régions : provinces de l\'Atlantique, Centre du Canada, provinces des Prairies, côte Ouest et territoires du Nord.</string>
+
+    <string name="topic_geography_section_2">Capitale nationale et provinces</string>
+    <string name="topic_geography_content_2">Ottawa est la capitale du Canada. Le pays réunit 10 provinces et 3 territoires bordés par trois océans.</string>
+
+    <string name="topic_geography_section_3">La région de l\'Atlantique</string>
+    <string name="topic_geography_content_3">Composée de Terre-Neuve-et-Labrador, de l\'Île-du-Prince-Édouard, de la Nouvelle-Écosse et du Nouveau-Brunswick (seule province officiellement bilingue).</string>
+
+    <string name="topic_geography_section_4">Le Centre du Canada</string>
+    <string name="topic_geography_content_4">L\'Ontario et le Québec regroupent plus de la moitié de la population. L\'Ontario est le cœur industriel, le Québec le cœur de la francophonie.</string>
+
+    <string name="topic_geography_section_5">Les provinces des Prairies</string>
+    <string name="topic_geography_content_5">Le Manitoba, la Saskatchewan et l\'Alberta sont célèbres pour leurs vastes plaine agricoles, leur blé et leurs ressources énergétiques.</string>
+
+    <string name="topic_geography_section_6">La côte Ouest</string>
+    <string name="topic_geography_content_6">La Colombie-Britannique est la province du Pacifique, réputée pour les montagnes Rocheuses, ses forêts humides et ses ports actifs.</string>
+
+    <string name="topic_geography_section_7">Les territoires du Nord</string>
+    <string name="topic_geography_content_7">Le Yukon, les Territoires du Nord-Ouest et le Nunavut couvrent un tiers du territoire. Le Nunavut a été créé en 1999 pour les Inuits.</string>
+
+    <string name="topic_geography_section_8">Trois façades océaniques</string>
+    <string name="topic_geography_content_8">Le Canada est bordé par l\'océan Pacifique (Ouest), l\'Atlantique (Est) et l\'Arctique (Nord). La Voie maritime relie les Grands Lacs à l\'Atlantique.</string>
+
+    <string name="topic_geography_section_9">Le Bouclier canadien</string>
+    <string name="topic_geography_content_9">Un fer à cheval géologique couvrant plus de la moitié du pays, riche en roches anciennes, forêts, lacs et minéraux (nickel, or, cuivre).</string>
+
+    <string name="topic_geography_section_10">Population et diversité</string>
+    <string name="topic_geography_content_10">La plupart des 40 millions d\'habitants vivent dans des centres urbains à moins de 200 km de la frontière américaine, formant une société multiculturelle.</string>
+
+    <string name="topic_geography_section_11">Les Appalaches</string>
+    <string name="topic_geography_content_11">Chaîne de montagnes s\'étendant à travers les provinces de l\'Atlantique et le Québec, offrant des sommets arrondis et des vallées côtières.</string>
+
+    <string name="topic_geography_section_12">Les Grands Lacs et le Saint-Laurent</string>
+    <string name="topic_geography_content_12">Cinq Grands Lacs (Ontario, Érié, Huron, Supérieur, Michigan) formant le plus grand réseau d\'eau douce de surface au monde.</string>
+
+    <string name="topic_geography_section_13">Les montagnes Rocheuses</string>
+    <string name="topic_geography_content_13">Majestueuse chaîne de montagnes le long de la frontière Alberta-Colombie-Britannique, abritant les parcs nationaux de Banff et Jasper.</string>
+
+    <string name="topic_geography_section_14">Le territoire du Nunavut</string>
+    <string name="topic_geography_content_14">Plus récent territoire canadien créé en 1999, dont la capitale Iqaluit est au cœur de la culture inuite et de la faune arctique.</string>
+
+    <string name="topic_geography_section_15">Les aurores boréales</string>
+    <string name="topic_geography_content_15">Spectaculaires phénomènes lumineux visibles dans le ciel nordique causés par l\'interaction des particules solaires avec le champ magnétique.</string>
+
+    <string name="topic_geography_section_16">Diversité climatique</string>
+    <string name="topic_geography_content_16">Le climat varie du climat maritime doux du Pacifique aux hivers continentaux froids et à la toundra polaire arctique.</string>
+
+    <string name="topic_geography_section_17">Richesses naturelles</string>
+    <string name="topic_geography_content_17">L\'économie est soutenue par la foresterie, l\'hydroélectricité, l\'agriculture, le pétrole, le gaz et les mines (or, diamants, nickel).</string>
+
+    <string name="topic_geography_section_18">Réseau des parcs nationaux</string>
+    <string name="topic_geography_content_18">Plus de 40 parcs nationaux protégeant la faune sauvage depuis Pacific Rim en Colombie-Britannique jusqu\'au Gros-Morne à Terre-Neuve.</string>
+
+    <string name="topic_geography_section_19">Grandes villes canadiennes</string>
+    <string name="topic_geography_content_19">Toronto (plus grande ville), Montréal (deuxième métropole francophone au monde), Vancouver, Calgary, Edmonton et Winnipeg.</string>
+
+    <string name="topic_geography_section_20">Six fuseaux horaires</string>
+    <string name="topic_geography_content_20">Le Canada s\'étend sur six fuseaux horaires : Pacifique, Rocheuses, Centre, Est, Atlantique et Terre-Neuve.</string>
+
+    <string name="previous_section">Section précédente</string>
+    <string name="progress_screen_title">Progrès</string>
+    <string name="progress_screen_subtitle">Suivez votre préparation et votre état de préparation</string>
+    <string name="overall_readiness">Préparation globale</string>
+    <string name="topics_completed">%1$d sur %2$d sujets terminés</string>
+    <string name="percentage">%1$d%%</string>
+    <string name="previous">Précédent</string>
+    <string name="complete">Terminé</string>
+    <string name="complete_and_next">Terminé &amp; Suivant</string>
+    <string name="history_q1">Qui étaient les premiers habitants du Canada ?</string>
+
+    <string name="history_q1_a">Peuples autochtones</string>
+    <string name="history_q1_b">Colons européens</string>
+    <string name="history_q1_c">Soldats britannique</string>
+    <string name="history_q1_d">Explorateurs français</string>
+
+    <string name="practice_history">Histoire</string>
+    <string name="practice_question_progress">Question %1$d sur %2$d</string>
+    <string name="practice_check_answer">Vérifier la réponse</string>
+    <string name="practice_next_question">Question suivante</string>
+    <string name="practice_correct">Exact !</string>
+    <string name="practice_incorrect">Pas tout à fait</string>
+    <string name="practice_no_questions">Aucune question disponible.</string>
+    <string name="practice_back">Retour</string>
+    <string name="practice_finish">Terminer l\'entraînement</string>
+    <string name="practice_results_title">Résultats de l\'entraînement</string>
+    <string name="practice_results_score">%1$d / %2$d</string>
+    <string name="practice_results_accuracy">%1$d%% de précision</string>
+    <string name="practice_result_excellent_title">Félicitations ! 🎉</string>
+    <string name="practice_result_excellent_desc">Excellent travail ! Vous avez fait preuve d\'une excellente connaissance des sujets canadiens.</string>
+    <string name="practice_result_good_title">Beau travail ! 👍</string>
+    <string name="practice_result_good_desc">Vous êtes sur la bonne voie ! Entraînez-vous encore un peu pour atteindre la perfection.</string>
+    <string name="practice_result_needs_practice_title">Continuez à vous entraîner ! 📚</string>
+    <string name="practice_result_needs_practice_desc">N\'abandonnez pas ! C\'est en s\'entraînant qu\'on progresse. Révisez les sujets et réessayez !</string>
+    <string name="practice_quit">Quitter l\'entraînement</string>
+    <string name="practice_try_again">Essayer 20 autres questions</string>
+
+    <!-- MOCK TEST (French) -->
+    <string name="mock_test_start_title">Test pratique officiel de citoyenneté</string>
+    <string name="mock_test_start_subtitle">Simulez le test de citoyenneté canadienne dans les conditions réelles d\'examen.</string>
+    <string name="mock_test_rule_1">20 questions aléatoires sur tous les sujets officiels</string>
+    <string name="mock_test_rule_2">Minuteur de 45 minutes</string>
+    <string name="mock_test_rule_3">15 / 20 bonnes réponses requises pour réussir (75 %)</string>
+    <string name="mock_test_start_button">Commencer le test officiel</string>
+    <string name="mock_test_flag">Marquer pour révision</string>
+    <string name="mock_test_flagged">Marqué</string>
+    <string name="mock_test_submit_button">Soumettre le test</string>
+    <string name="mock_test_submit_dialog_title">Soumettre l\'examen ?</string>
+    <string name="mock_test_submit_dialog_msg">Vous avez répondu à %1$d questions sur %2$d. Êtes-vous sûr de vouloir soumettre votre examen maintenant ?</string>
+    <string name="mock_test_submit_dialog_confirm">Oui, soumettre l\'examen</string>
+    <string name="mock_test_submit_dialog_cancel">Continuer la révision</string>
+    <string name="mock_test_passed_title">Félicitations ! Vous avez réussi ! 🎉</string>
+    <string name="mock_test_passed_desc">Super travail ! Vous avez atteint la note requise (75 %+) pour réussir le test de citoyenneté canadienne.</string>
+    <string name="mock_test_failed_title">Pas encore réussi 📚</string>
+    <string name="mock_test_failed_desc">Il faut au moins 15 bonnes réponses sur 20 (75 %) pour réussir. Examinez vos réponses ci-dessous et réessayez !</string>
+    <string name="mock_test_time_spent">Temps écoulé : %1$02d:%2$02d</string>
+    <string name="mock_test_review_title">Examen complet des réponses</string>
+    <string name="mock_test_retake">Refaire le test pratique</string>
+    <string name="mock_test_exit">Retour à l\'accueil</string>
+
+    <!-- LANGUAGE DIALOG -->
+    <string name="language_dialog_title">Changer de langue ?</string>
+    <string name="language_dialog_msg">Le changement de langue nécessite le redémarrage de l\'application pour appliquer les modifications à tous les écrans. Voulez-vous redémarrer maintenant ?</string>
+    <string name="language_dialog_confirm">Redémarrer l\'application</string>
+    <string name="language_dialog_cancel">Annuler</string>
+</resources>

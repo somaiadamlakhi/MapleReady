@@ -14,4 +14,8 @@ interface PracticeRepository {
         topicId: StudyTopicId,
         language: AppLanguage = AppLanguage.ENGLISH
     ): List<PracticeQuestion>
+
+    fun getSavedLanguage(): AppLanguage
+
+    fun saveLanguage(language: AppLanguage)
 }
