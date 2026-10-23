@@ -12,6 +12,8 @@ sealed class AppDestination {
 
     data object Practice : AppDestination()
 
+    data object MockTest : AppDestination()
+
     data class StudyTopic(
         val topicId: StudyTopicId
     ) : AppDestination()

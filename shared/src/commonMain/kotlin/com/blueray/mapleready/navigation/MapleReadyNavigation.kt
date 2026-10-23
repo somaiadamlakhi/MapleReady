@@ -10,6 +10,7 @@ import androidx.compose.runtime.setValue
 import com.blueray.mapleready.di.ViewModelProvider
 import com.blueray.mapleready.presentation.components.BottomNavItem
 import com.blueray.mapleready.presentation.home.HomeScreen
+import com.blueray.mapleready.presentation.mocktest.MockTestScreen
 import com.blueray.mapleready.presentation.practice.PracticeScreen
 import com.blueray.mapleready.presentation.progress.ProgressScreen
 import com.blueray.mapleready.presentation.study.StudyScreen
@@ -42,6 +43,10 @@ fun MapleReadyNavigation(
         viewModelProvider.providePracticeViewModel()
     }
 
+    val mockTestViewModel = remember {
+        viewModelProvider.provideMockTestViewModel()
+    }
+
     when (val current = destination) {
 
         AppDestination.Home -> {
@@ -61,7 +66,7 @@ fun MapleReadyNavigation(
                     destination = AppDestination.Practice
                 },
                 onMockTestClick = {
-                    // later
+                    destination = AppDestination.MockTest
                 },
                 onBottomNavItemSelected = { item ->
                     destination = item.toDestination()
@@ -128,6 +133,49 @@ fun MapleReadyNavigation(
                     destination = AppDestination.Home
                 },
                 onBackClick = {
+                    destination = AppDestination.Home
+                }
+            )
+        }
+
+        AppDestination.MockTest -> {
+
+            val state by mockTestViewModel.uiState.collectAsState()
+
+            MockTestScreen(
+                state = state,
+                onStartTestClick = {
+                    mockTestViewModel.startTest()
+                },
+                onAnswerClick = { answerId ->
+                    mockTestViewModel.selectAnswer(answerId)
+                },
+                onToggleFlagClick = {
+                    mockTestViewModel.toggleFlagCurrentQuestion()
+                },
+                onQuestionIndexClick = { index ->
+                    mockTestViewModel.goToQuestion(index)
+                },
+                onNextQuestionClick = {
+                    mockTestViewModel.nextQuestion()
+                },
+                onPreviousQuestionClick = {
+                    mockTestViewModel.previousQuestion()
+                },
+                onRequestSubmitClick = {
+                    mockTestViewModel.requestSubmitTest()
+                },
+                onDismissSubmitDialog = {
+                    mockTestViewModel.dismissSubmitConfirmation()
+                },
+                onConfirmSubmitClick = {
+                    mockTestViewModel.confirmSubmitTest()
+                },
+                onRetakeClick = {
+                    mockTestViewModel.startTest()
+                },
+                onBackClick = {
+                    mockTestViewModel.resetTest()
                     destination = AppDestination.Home
                 }
             )

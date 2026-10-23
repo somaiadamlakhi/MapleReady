@@ -374,4 +374,27 @@
     <string name="practice_result_needs_practice_desc">Don\'t give up! Practice makes perfect. Review the topics and try again!</string>
     <string name="practice_quit">Quit Practice</string>
     <string name="practice_try_again">Try Another 20 Questions</string>
+
+    <!-- MOCK TEST -->
+    <string name="mock_test_start_title">Official Citizenship Mock Test</string>
+    <string name="mock_test_start_subtitle">Simulate the official Canadian Citizenship Test under real exam conditions.</string>
+    <string name="mock_test_rule_1">20 Random Questions from all official topics</string>
+    <string name="mock_test_rule_2">45 Minutes Countdown Timer</string>
+    <string name="mock_test_rule_3">15 / 20 Correct Answers Required to Pass (75%)</string>
+    <string name="mock_test_start_button">Start Official Mock Test</string>
+    <string name="mock_test_flag">Flag for Review</string>
+    <string name="mock_test_flagged">Flagged</string>
+    <string name="mock_test_submit_button">Submit Test</string>
+    <string name="mock_test_submit_dialog_title">Submit Exam?</string>
+    <string name="mock_test_submit_dialog_msg">You have answered %1$d out of %2$d questions. Are you sure you want to submit your exam now?</string>
+    <string name="mock_test_submit_dialog_confirm">Yes, Submit Exam</string>
+    <string name="mock_test_submit_dialog_cancel">Keep Reviewing</string>
+    <string name="mock_test_passed_title">Congratulations! You Passed! 🎉</string>
+    <string name="mock_test_passed_desc">Great job! You met the official score requirement (75%+) to pass the Canadian Citizenship Test.</string>
+    <string name="mock_test_failed_title">Not Passed Yet 📚</string>
+    <string name="mock_test_failed_desc">You need at least 15 out of 20 correct answers (75%) to pass. Review the answers below and try again!</string>
+    <string name="mock_test_time_spent">Time Taken: %1$02d:%2$02d</string>
+    <string name="mock_test_review_title">Full Exam Review</string>
+    <string name="mock_test_retake">Retake Mock Test</string>
+    <string name="mock_test_exit">Back to Home</string>
 </resources>
