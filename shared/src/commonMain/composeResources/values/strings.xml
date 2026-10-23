@@ -34,6 +34,7 @@
     <string name="section_progress">Section %1$d of %2$d</string>
     <string name="next_section">Next Section</string>
 
+    <!-- HISTORY (Sections 1-20) -->
     <string name="topic_history_section_1">First Nations, Inuit &amp; Métis</string>
     <string name="topic_history_content_1">Canada\'s history begins with Indigenous peoples who lived on this land for thousands of years. The three distinct groups recognized today are First Nations, Inuit, and Métis, each with unique cultures, languages, and traditions.</string>
 
@@ -64,7 +65,37 @@
     <string name="topic_history_section_10">Modern Constitution (1982)</string>
     <string name="topic_history_content_10">In 1982, Prime Minister Pierre Trudeau patriated the Constitution, adding the Canadian Charter of Rights and Freedoms to permanently entrench democratic rights and human dignity.</string>
 
-    <!-- Rights & Responsibilities -->
+    <string name="topic_history_section_11">Royal Proclamation of 1763</string>
+    <string name="topic_history_content_11">Issued by King George III following the Seven Years\' War, it established British government in Quebec and officially recognized Indigenous land rights.</string>
+
+    <string name="topic_history_section_12">The Loyalist Influx</string>
+    <string name="topic_history_content_12">Following the American Revolution, over 40,000 Loyalists fled to Canada, expanding settlements in Nova Scotia and Quebec, leading to the creation of New Brunswick and Upper Canada.</string>
+
+    <string name="topic_history_section_13">Rebellions of 1837–1838</string>
+    <string name="topic_history_content_13">Reformers in Upper and Lower Canada demanded democratic government. Lord Durham\'s subsequent report recommended uniting the Canadas and granting responsible self-rule.</string>
+
+    <string name="topic_history_section_14">Louis Riel &amp; Métis Rights</string>
+    <string name="topic_history_content_14">Louis Riel led the Red River Resistance in 1869 and North-West Resistance in 1885 to defend Métis land and culture, leading directly to Manitoba joining Confederation.</string>
+
+    <string name="topic_history_section_15">The Klondike Gold Rush</string>
+    <string name="topic_history_content_15">Discovery of gold in Yukon in 1896 brought thousands of prospectors north, inspiring northern development and leading to Yukon\'s creation as a territory in 1898.</string>
+
+    <string name="topic_history_section_16">Women\'s Suffrage &amp; Famous Five</string>
+    <string name="topic_history_content_16">Suffragettes led by Nellie McClung won women\'s right to vote in 1918. The Famous Five won the 1929 Persons Case, establishing that women were legal persons under law.</string>
+
+    <string name="topic_history_section_17">Great Depression &amp; Reform</string>
+    <string name="topic_history_content_17">The severe economic crisis of the 1930s led to creation of the Bank of Canada, unemployment insurance, and foundational federal social safety programs.</string>
+
+    <string name="topic_history_section_18">Lester B. Pearson &amp; Peacekeeping</string>
+    <string name="topic_history_content_18">Lester B. Pearson won the 1957 Nobel Peace Prize for establishing UN Peacekeeping during the Suez Crisis. He also introduced Canada\'s iconic Maple Leaf flag in 1965.</string>
+
+    <string name="topic_history_section_19">Official Languages Act (1969)</string>
+    <string name="topic_history_content_19">Prime Minister Pierre Trudeau passed this milestone law making English and French official languages of the federal government and national public services.</string>
+
+    <string name="topic_history_section_20">Truth and Reconciliation</string>
+    <string name="topic_history_content_20">Canada acknowledges historic wrongs, including the Residential Schools system, committing to genuine reconciliation and honoring Indigenous heritage and self-determination.</string>
+
+    <!-- RIGHTS & RESPONSIBILITIES (Sections 1-20) -->
     <string name="topic_rights_section_1">The Canadian Charter</string>
     <string name="topic_rights_content_1">The Canadian Charter of Rights and Freedoms forms part of Canada\'s Constitution, protecting fundamental human rights and freedoms for everyone residing in Canada.</string>
 
@@ -95,7 +126,37 @@
     <string name="topic_rights_section_10">Protecting Environment &amp; Heritage</string>
     <string name="topic_rights_content_10">Citizens contribute to Canada by helping others in the community, volunteering, and protecting Canada\'s natural environment and cultural heritage for future generations.</string>
 
-    <!-- Government -->
+    <string name="topic_rights_section_11">Magna Carta Heritage</string>
+    <string name="topic_rights_content_11">The 1215 English Magna Carta laid foundational legal traditions: freedom under law, habeas corpus, and protection against arbitrary state power.</string>
+
+    <string name="topic_rights_section_12">Aboriginal Treaty Rights</string>
+    <string name="topic_rights_content_12">Section 35 of the Constitution Act 1982 recognizes and affirms existing treaty and land rights of First Nations, Inuit, and Métis peoples across Canada.</string>
+
+    <string name="topic_rights_section_13">Multicultural Mosaic</string>
+    <string name="topic_rights_content_13">Canadian policy recognizes the cultural diversity of citizens as a fundamental characteristic of Canadian identity, heritage, and national strength.</string>
+
+    <string name="topic_rights_section_14">Gender Equality in Law</string>
+    <string name="topic_rights_content_14">Men and women have equal legal rights. Forced marriage, domestic abuse, honor crimes, and gender discrimination are strictly illegal in Canada.</string>
+
+    <string name="topic_rights_section_15">Community Volunteering</string>
+    <string name="topic_rights_content_15">Contributing time to local charities, food banks, schools, and civic groups is a cherished cornerstone of Canadian community spirit and solidarity.</string>
+
+    <string name="topic_rights_section_16">Limits on Expression</string>
+    <string name="topic_rights_content_16">Speech in Canada is free, but hate speech, incitement to violence, and defamation are illegal under Criminal Code provisions.</string>
+
+    <string name="topic_rights_section_17">Property &amp; Business Freedom</string>
+    <string name="topic_rights_content_17">Citizens can own land, homes, and businesses, supported by impartial commercial laws and secure private property protections.</string>
+
+    <string name="topic_rights_section_18">Defending Canadian Sovereignty</string>
+    <string name="topic_rights_content_18">Serving in the Canadian Armed Forces or reservists is a honored way to defend Canadian sovereignty, security, and international humanitarian relief.</string>
+
+    <string name="topic_rights_section_19">Religious Accommodation</string>
+    <string name="topic_rights_content_19">Employers and public institutions must accommodate religious practices unless doing so causes undue hardship or breaches fundamental Canadian laws.</string>
+
+    <string name="topic_rights_section_20">The Citizenship Oath</string>
+    <string name="topic_rights_content_20">Pledging allegiance to King Charles III, obeying Canadian laws, and fulfilling civic duties marks a proud commitment to Canada and fellow citizens.</string>
+
+    <!-- GOVERNMENT (Sections 1-20) -->
     <string name="topic_government_section_1">Constitutional Monarchy</string>
     <string name="topic_government_content_1">Canada is a parliamentary democracy and constitutional monarchy. Our system combines elected representatives with the historical stability of the Crown.</string>
 
@@ -126,7 +187,37 @@
     <string name="topic_government_section_10">Supreme Court of Canada</string>
     <string name="topic_government_content_10">The Supreme Court of Canada in Ottawa is the highest court in the land, consisting of nine judges led by the Chief Justice, safeguarding constitutional law.</string>
 
-    <!-- Elections -->
+    <string name="topic_government_section_11">Lieutenant Governors</string>
+    <string name="topic_government_content_11">Representatives of the Sovereign in each of Canada\'s 10 provinces, appointed by the Governor General to grant provincial Royal Assent.</string>
+
+    <string name="topic_government_section_12">The Provincial Premier</string>
+    <string name="topic_government_content_12">Head of government in a province, leading the provincial cabinet and directing provincial policy and administration.</string>
+
+    <string name="topic_government_section_13">Territorial Commissioners</string>
+    <string name="topic_government_content_13">Appointed representatives of the federal government in Yukon, NWT, and Nunavut fulfilling ceremonial roles similar to Lieutenant Governors.</string>
+
+    <string name="topic_government_section_14">The Public Service</string>
+    <string name="topic_government_content_14">Non-partisan professional civil servants carrying out daily federal and provincial administrative operations, serving whichever party is elected.</string>
+
+    <string name="topic_government_section_15">Question Period</string>
+    <string name="topic_government_content_15">Daily 45-minute parliamentary session where opposition MPs question Cabinet ministers about government policies and executive decisions.</string>
+
+    <string name="topic_government_section_16">The Speaker of the House</string>
+    <string name="topic_government_content_16">An MP elected by peers to enforce parliamentary rules, maintain order, and manage House debates neutrally and impartially.</string>
+
+    <string name="topic_government_section_17">Constitutional Amendments</string>
+    <string name="topic_government_content_17">Changing Canada\'s Constitution requires approval from Parliament and at least 7 provinces representing 50% of the Canadian population.</string>
+
+    <string name="topic_government_section_18">Transfer Payments</string>
+    <string name="topic_government_content_18">Federal funds distributed to provinces to ensure comparable healthcare, higher education, and public services nationwide regardless of provincial wealth.</string>
+
+    <string name="topic_government_section_19">Parliament Hill</string>
+    <string name="topic_government_content_19">Historical gothic buildings on Parliament Hill in Ottawa, featuring the Peace Tower and iconic House of Commons and Senate chambers.</string>
+
+    <string name="topic_government_section_20">Cabinet Solidarity</string>
+    <string name="topic_government_content_20">Constitutional convention requiring all Cabinet ministers to publicly support government decisions or resign from Cabinet.</string>
+
+    <!-- ELECTIONS (Sections 1-20) -->
     <string name="topic_elections_section_1">Federal Election Schedule</string>
     <string name="topic_elections_content_1">Federal general elections are held at least once every four years on fixed dates, managed independently and non-partisantly by Elections Canada.</string>
 
@@ -157,7 +248,37 @@
     <string name="topic_elections_section_10">History of Voting Rights</string>
     <string name="topic_elections_content_10">Voting rights expanded over time: women won federal voting rights in 1918 led by suffragettes like Nellie McClung, and First Nations gained full voting rights in 1960.</string>
 
-    <!-- Geography -->
+    <string name="topic_elections_section_11">Elections Canada Agency</string>
+    <string name="topic_elections_content_11">Independent, non-partisan agency responsible for organizing federal elections, maintaining voter rolls, and enforcing election finance laws.</string>
+
+    <string name="topic_elections_section_12">National Register of Electors</string>
+    <string name="topic_elections_content_12">Permanent database of eligible Canadian voters updated continuously through tax returns, provincial driver records, and citizenship updates.</string>
+
+    <string name="topic_elections_section_13">Voter Information Card</string>
+    <string name="topic_elections_content_13">Official notice mailed to registered voters before an election indicating designated polling station locations, dates, and voting hours.</string>
+
+    <string name="topic_elections_section_14">Advance Polls</string>
+    <string name="topic_elections_content_14">Polling stations open several days prior to election day allowing citizens unable to vote on election day to cast early ballots.</string>
+
+    <string name="topic_elections_section_15">Special Ballot Voting</string>
+    <string name="topic_elections_content_15">Voting option by mail or at Elections Canada offices for citizens traveling, living abroad, or studying away from home.</string>
+
+    <string name="topic_elections_section_16">By-Elections</string>
+    <string name="topic_elections_content_16">Special elections held between general elections when an MP seat becomes vacant due to resignation or death.</string>
+
+    <string name="topic_elections_section_17">Candidate Nomination</string>
+    <string name="topic_elections_content_17">Any eligible voter can run as a candidate by gathering local voter signatures and submitting nomination papers to Elections Canada.</string>
+
+    <string name="topic_elections_section_18">First-Past-The-Post</string>
+    <string name="topic_elections_content_18">Canada\'s electoral system where the candidate receiving the highest number of votes in a riding wins the seat.</string>
+
+    <string name="topic_elections_section_19">Dissolution of Parliament</string>
+    <string name="topic_elections_content_19">The Governor General officially dissolves Parliament on the Prime Minister\'s advice, triggering the election campaign.</string>
+
+    <string name="topic_elections_section_20">Municipal Elections</string>
+    <string name="topic_elections_content_20">Local elections held every 3 to 4 years to elect city mayors, city councillors, and school board trustees.</string>
+
+    <!-- GEOGRAPHY (Sections 1-20) -->
     <string name="topic_geography_section_1">The 5 Geographic Regions</string>
     <string name="topic_geography_content_1">Canada spans five distinct geographic regions: Atlantic Provinces, Central Canada, Prairie Provinces, West Coast, and Northern Territories.</string>
 
@@ -187,6 +308,36 @@
 
     <string name="topic_geography_section_10">Population &amp; Diversity</string>
     <string name="topic_geography_content_10">Most of Canada\'s 40 million people live in urban centers within 200 kilometers of the U.S. border, forming one of the most multicultural nations on earth.</string>
+
+    <string name="topic_geography_section_11">Appalachian Mountains</string>
+    <string name="topic_geography_content_11">Mountain range extending through Atlantic provinces and Quebec, featuring ancient rounded peaks, river valleys, and coastal harbors.</string>
+
+    <string name="topic_geography_section_12">Great Lakes &amp; St. Lawrence</string>
+    <string name="topic_geography_content_12">Five Great Lakes (Ontario, Erie, Huron, Superior, Michigan) forming the largest surface freshwater system on Earth.</string>
+
+    <string name="topic_geography_section_13">The Rocky Mountains</string>
+    <string name="topic_geography_content_13">Majestic mountain range along the Alberta-BC border, home to famous national parks like Banff and Jasper.</string>
+
+    <string name="topic_geography_section_14">Nunavut Territory</string>
+    <string name="topic_geography_content_14">Canada\'s newest territory created in 1999, whose capital Iqaluit is home to vibrant Inuit culture and Arctic wildlife.</string>
+
+    <string name="topic_geography_section_15">Northern Lights (Aurora)</string>
+    <string name="topic_geography_content_15">Spectacular atmospheric light displays visible in Canada\'s northern skies caused by solar particles interacting with Earth\'s magnetic field.</string>
+
+    <string name="topic_geography_section_16">Canadian Climate Diversity</string>
+    <string name="topic_geography_content_16">Climate ranges from mild maritime on the Pacific coast to cold continental inland winters and arctic polar tundra in the far north.</string>
+
+    <string name="topic_geography_section_17">Natural Resources</string>
+    <string name="topic_geography_content_17">Economy supported by rich natural wealth: forestry, hydroelectricity, agriculture, oil, gas, and mining for gold, diamonds, and nickel.</string>
+
+    <string name="topic_geography_section_18">National Parks System</string>
+    <string name="topic_geography_content_18">Over 40 national parks protecting ecological wilderness from Pacific Rim in BC to Gros Morne in Newfoundland.</string>
+
+    <string name="topic_geography_section_19">Major Canadian Cities</string>
+    <string name="topic_geography_content_19">Toronto (largest city), Montreal (second largest French-speaking city in the world), Vancouver, Calgary, Edmonton, and Winnipeg.</string>
+
+    <string name="topic_geography_section_20">Six Time Zones</string>
+    <string name="topic_geography_content_20">Canada spans six time zones: Pacific, Mountain, Central, Eastern, Atlantic, and Newfoundland Time.</string>
     <string name="previous_section">Previous Section</string>
     <string name="progress_screen_title">Progress</string>
     <string name="progress_screen_subtitle">Track your preparation and readiness</string>

@@ -21,11 +21,14 @@ class StudyTopicViewModel(
         loadTopic()
     }
 
-    private fun loadTopic() {
+    fun loadTopic() {
+        repository.checkAndRefreshIfCompleted(topicId)
+
         val topic = repository.getTopicById(topicId)
+        val savedIndex = repository.getLastVisitedSectionIndex(topicId)
 
         _uiState.value = topic?.toTopicUiState(
-            currentSectionIndex = 0
+            currentSectionIndex = savedIndex
         )
     }
 
@@ -40,8 +43,10 @@ class StudyTopicViewModel(
         )
 
         if (currentIndex < state.sections.lastIndex) {
+            val newIndex = currentIndex + 1
+            repository.saveLastVisitedSectionIndex(topicId, newIndex)
             _uiState.value = state.copy(
-                currentSectionIndex = currentIndex + 1
+                currentSectionIndex = newIndex
             )
         }
     }
@@ -50,13 +55,13 @@ class StudyTopicViewModel(
         val currentState = _uiState.value ?: return
 
         if (currentState.hasPreviousSection) {
+            val newIndex = currentState.currentSectionIndex - 1
+            repository.saveLastVisitedSectionIndex(topicId, newIndex)
             _uiState.value = currentState.copy(
-                currentSectionIndex =
-                    currentState.currentSectionIndex - 1
+                currentSectionIndex = newIndex
             )
         }
     }
-
 
     fun markCurrentSectionCompleted() {
         val state = _uiState.value ?: return
@@ -65,5 +70,10 @@ class StudyTopicViewModel(
             topicId = topicId,
             sectionIndex = state.currentSectionIndex
         )
+    }
+
+    fun saveCurrentStateOnLeave() {
+        val state = _uiState.value ?: return
+        repository.saveLastVisitedSectionIndex(topicId, state.currentSectionIndex)
     }
 }

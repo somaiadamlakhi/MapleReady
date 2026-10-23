@@ -141,6 +141,10 @@ fun MapleReadyNavigation(
                 )
             }
 
+            LaunchedEffect(current.topicId) {
+                studyTopicViewModel.loadTopic()
+            }
+
             val state by studyTopicViewModel.uiState.collectAsState()
 
             state?.let { topicState ->
@@ -153,6 +157,7 @@ fun MapleReadyNavigation(
                         studyTopicViewModel.previousSection()
                     },
                     onBackClick = {
+                        studyTopicViewModel.saveCurrentStateOnLeave()
                         studyViewModel.refresh()
                         destination = AppDestination.Study
                     },

@@ -19,4 +19,17 @@ interface StudyRepository {
     fun getCompletedSectionIndexes(
         topicId: StudyTopicId
     ): Set<Int>
+
+    fun getLastVisitedSectionIndex(
+        topicId: StudyTopicId
+    ): Int
+
+    fun saveLastVisitedSectionIndex(
+        topicId: StudyTopicId,
+        sectionIndex: Int
+    )
+
+    fun checkAndRefreshIfCompleted(
+        topicId: StudyTopicId
+    )
 }
