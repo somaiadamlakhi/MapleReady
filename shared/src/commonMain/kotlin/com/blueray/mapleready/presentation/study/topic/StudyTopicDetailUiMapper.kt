@@ -184,6 +184,7 @@ fun StudyTopic.toTopicUiState(
     }
 
     return StudyTopicUiState(
+        topicId = id,
         title = topicTitle,
         currentSectionIndex = currentSectionIndex,
         sections = mappedSections

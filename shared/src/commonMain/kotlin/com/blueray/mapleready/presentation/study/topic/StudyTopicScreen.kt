@@ -26,10 +26,17 @@ import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.blueray.mapleready.domain.arabic.ArabicExplanationHelper
+import com.blueray.mapleready.presentation.components.ArabicExplanationButton
+import com.blueray.mapleready.presentation.components.ArabicExplanationModal
 import com.blueray.mapleready.presentation.theme.MapleReadyTheme
 import com.blueray.mapleready.presentation.theme.PracticeBackground
 import com.blueray.mapleready.presentation.theme.ProgressTrack
@@ -102,6 +109,8 @@ private fun StudyTopicContent(
     val isLastSection =
         hasSections &&
                 safeIndex == state.sections.lastIndex
+
+    var showArabicExplanation by remember { mutableStateOf(false) }
 
     Column(
         modifier = modifier
@@ -200,14 +209,23 @@ private fun StudyTopicContent(
                             Arrangement.spacedBy(12.dp)
                     ) {
 
-                        Text(
-                            text = stringResource(
-                                section.title
-                            ),
-                            style =
-                                MaterialTheme.typography
-                                    .titleLarge
-                        )
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.SpaceBetween,
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Text(
+                                text = stringResource(
+                                    section.title
+                                ),
+                                style = MaterialTheme.typography.titleLarge,
+                                modifier = Modifier.weight(1f)
+                            )
+
+                            ArabicExplanationButton(
+                                onClick = { showArabicExplanation = true }
+                            )
+                        }
 
                         Text(
                             text = stringResource(
@@ -223,6 +241,20 @@ private fun StudyTopicContent(
                         )
                     }
                 }
+            }
+
+            if (showArabicExplanation && currentSection != null) {
+                val explanation = ArabicExplanationHelper.getStudySectionExplanation(
+                    topicId = state.topicId,
+                    sectionIndex = safeIndex,
+                    sectionTitle = stringResource(currentSection.title),
+                    sectionContent = stringResource(currentSection.content)
+                )
+
+                ArabicExplanationModal(
+                    explanationText = explanation,
+                    onDismiss = { showArabicExplanation = false }
+                )
             }
 
             Spacer(

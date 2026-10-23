@@ -42,15 +42,22 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import com.blueray.mapleready.domain.arabic.ArabicExplanationHelper
 import com.blueray.mapleready.domain.practice.model.AnswerOption
 import com.blueray.mapleready.domain.practice.model.PracticeQuestion
 import com.blueray.mapleready.domain.study.model.StudyTopicId
+import com.blueray.mapleready.presentation.components.ArabicExplanationButton
+import com.blueray.mapleready.presentation.components.ArabicExplanationModal
 import com.blueray.mapleready.presentation.theme.MapleGold
 import com.blueray.mapleready.presentation.theme.MapleRed
 import mapleready.shared.generated.resources.Res
@@ -317,24 +324,38 @@ private fun MockTestExamContent(
 
         if (question == null) return@Column
 
+        var showArabicExplanation by remember { mutableStateOf(false) }
+
         Column(
             modifier = Modifier
                 .weight(1f)
                 .verticalScroll(rememberScrollState())
         ) {
-            Text(
-                text = stringResource(question.topicId.toTitleResource()),
-                style = MaterialTheme.typography.labelLarge,
-                color = MaterialTheme.colorScheme.primary
-            )
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Column {
+                    Text(
+                        text = stringResource(question.topicId.toTitleResource()),
+                        style = MaterialTheme.typography.labelLarge,
+                        color = MaterialTheme.colorScheme.primary
+                    )
 
-            Spacer(modifier = Modifier.height(6.dp))
+                    Spacer(modifier = Modifier.height(2.dp))
 
-            Text(
-                text = "Question ${state.currentQuestionNumber} of ${state.totalQuestions}",
-                style = MaterialTheme.typography.bodyMedium,
-                color = MaterialTheme.colorScheme.onSurfaceVariant
-            )
+                    Text(
+                        text = "Question ${state.currentQuestionNumber} of ${state.totalQuestions}",
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                }
+
+                ArabicExplanationButton(
+                    onClick = { showArabicExplanation = true }
+                )
+            }
 
             Spacer(modifier = Modifier.height(16.dp))
 
@@ -356,6 +377,14 @@ private fun MockTestExamContent(
                     )
                 }
             }
+        }
+
+        if (showArabicExplanation) {
+            val explanation = ArabicExplanationHelper.getQuestionExplanation(question)
+            ArabicExplanationModal(
+                explanationText = explanation,
+                onDismiss = { showArabicExplanation = false }
+            )
         }
 
         Spacer(modifier = Modifier.height(12.dp))
@@ -683,6 +712,8 @@ private fun ReviewQuestionCard(
     correctAnswer: AnswerOption?,
     isCorrect: Boolean
 ) {
+    var showArabicExplanation by remember { mutableStateOf(false) }
+
     Card(
         modifier = Modifier.fillMaxWidth(),
         shape = RoundedCornerShape(16.dp),
@@ -705,11 +736,20 @@ private fun ReviewQuestionCard(
                     color = MaterialTheme.colorScheme.primary
                 )
 
-                Icon(
-                    imageVector = if (isCorrect) Icons.Default.Check else Icons.Default.Close,
-                    contentDescription = null,
-                    tint = if (isCorrect) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.error
-                )
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
+                    ArabicExplanationButton(
+                        onClick = { showArabicExplanation = true }
+                    )
+
+                    Icon(
+                        imageVector = if (isCorrect) Icons.Default.Check else Icons.Default.Close,
+                        contentDescription = null,
+                        tint = if (isCorrect) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.error
+                    )
+                }
             }
 
             Text(
@@ -733,6 +773,14 @@ private fun ReviewQuestionCard(
                 )
             }
         }
+    }
+
+    if (showArabicExplanation) {
+        val explanation = ArabicExplanationHelper.getQuestionExplanation(question)
+        ArabicExplanationModal(
+            explanationText = explanation,
+            onDismiss = { showArabicExplanation = false }
+        )
     }
 }
 

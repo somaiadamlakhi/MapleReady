@@ -33,14 +33,21 @@ import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import com.blueray.mapleready.domain.arabic.ArabicExplanationHelper
 import com.blueray.mapleready.domain.practice.model.AnswerOption
 import com.blueray.mapleready.domain.study.model.StudyTopicId
+import com.blueray.mapleready.presentation.components.ArabicExplanationButton
+import com.blueray.mapleready.presentation.components.ArabicExplanationModal
 import mapleready.shared.generated.resources.Res
 import mapleready.shared.generated.resources.practice_back
 import mapleready.shared.generated.resources.practice_check_answer
@@ -89,6 +96,8 @@ fun PracticeScreen(
         )
         return
     }
+
+    var showArabicExplanation by remember { mutableStateOf(false) }
 
     val question = state.currentQuestion
 
@@ -143,27 +152,47 @@ fun PracticeScreen(
             return@Column
         }
 
-        Text(
-            text = stringResource(
-                question.topicId.toTitleResource()
-            ),
-            style = MaterialTheme.typography.labelLarge,
-            color = MaterialTheme.colorScheme.primary
-        )
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Column {
+                Text(
+                    text = stringResource(
+                        question.topicId.toTitleResource()
+                    ),
+                    style = MaterialTheme.typography.labelLarge,
+                    color = MaterialTheme.colorScheme.primary
+                )
 
-        Spacer(
-            modifier = Modifier.height(6.dp)
-        )
+                Spacer(
+                    modifier = Modifier.height(2.dp)
+                )
 
-        Text(
-            text = stringResource(
-                Res.string.practice_question_progress,
-                state.currentQuestionNumber,
-                state.totalQuestions
-            ),
-            style = MaterialTheme.typography.bodyMedium,
-            color = MaterialTheme.colorScheme.onSurfaceVariant
-        )
+                Text(
+                    text = stringResource(
+                        Res.string.practice_question_progress,
+                        state.currentQuestionNumber,
+                        state.totalQuestions
+                    ),
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                )
+            }
+
+            ArabicExplanationButton(
+                onClick = { showArabicExplanation = true }
+            )
+        }
+
+        if (showArabicExplanation) {
+            val explanation = ArabicExplanationHelper.getQuestionExplanation(question)
+            ArabicExplanationModal(
+                explanationText = explanation,
+                onDismiss = { showArabicExplanation = false }
+            )
+        }
 
         Spacer(
             modifier = Modifier.height(10.dp)

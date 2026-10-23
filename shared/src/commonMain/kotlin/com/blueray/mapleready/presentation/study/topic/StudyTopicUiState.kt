@@ -1,5 +1,6 @@
 package com.blueray.mapleready.presentation.study.topic
 
+import com.blueray.mapleready.domain.study.model.StudyTopicId
 import org.jetbrains.compose.resources.StringResource
 
 data class StudyTopicSectionUiModel(
@@ -8,6 +9,7 @@ data class StudyTopicSectionUiModel(
 )
 
 data class StudyTopicUiState(
+    val topicId: StudyTopicId = StudyTopicId.HISTORY,
     val title: StringResource,
     val currentSectionIndex: Int = 0,
     val sections: List<StudyTopicSectionUiModel> = emptyList()
