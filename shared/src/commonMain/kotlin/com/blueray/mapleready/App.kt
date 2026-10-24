@@ -1,6 +1,5 @@
 package com.blueray.mapleready
 
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.runtime.Composable
@@ -15,6 +14,7 @@ import com.blueray.mapleready.database.DatabaseDriverFactory
 import com.blueray.mapleready.di.AppContainer
 import com.blueray.mapleready.domain.language.AppLanguage
 import com.blueray.mapleready.navigation.MapleReadyNavigation
+import com.blueray.mapleready.presentation.splash.SplashScreen
 import com.blueray.mapleready.presentation.theme.MapleReadyTheme
 
 @Composable
@@ -33,6 +33,10 @@ fun App(
         mutableStateOf(false)
     }
 
+    var showSplash by remember {
+        mutableStateOf(true)
+    }
+
     var currentLanguage by remember {
         mutableStateOf(AppLanguage.ENGLISH)
     }
@@ -46,7 +50,7 @@ fun App(
 
     MapleReadyTheme {
 
-        if (isInitialized) {
+        if (isInitialized && !showSplash) {
 
             MapleReadyNavigation(
                 viewModelProvider = appContainer.viewModelProvider,
@@ -59,12 +63,11 @@ fun App(
 
         } else {
 
-            Box(
-                modifier = Modifier.fillMaxSize(),
-                contentAlignment = Alignment.Center
-            ) {
-                CircularProgressIndicator()
-            }
+            SplashScreen(
+                onSplashFinished = {
+                    showSplash = false
+                }
+            )
         }
     }
 }
